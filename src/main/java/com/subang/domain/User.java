@@ -1,0 +1,113 @@
+package com.subang.domain;
+
+import java.io.Serializable;
+
+import com.subang.bean.Result;
+
+public class User extends Result implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
+	private Boolean login;
+	private String openid;
+	private String nickname;
+	private String password;
+	private String cellnum;
+	private Integer score;
+	private Double money;
+	private Integer addrid; // 用户的默认地址
+
+	public User() {
+		this.login = false;
+		this.score = 0;
+		this.money = 0.0;
+	}
+
+	public User(Integer id, Boolean login, String openid, String nickname, String password,
+			String cellnum, Integer score, Double money, Integer addrid) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.openid = openid;
+		this.nickname = nickname;
+		this.password = password;
+		this.cellnum = cellnum;
+		this.score = score;
+		this.money = money;
+		this.addrid = addrid;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Boolean getLogin() {
+		return login;
+	}
+
+	public void setLogin(Boolean login) {
+		this.login = login;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCellnum() {
+		return cellnum;
+	}
+
+	public void setCellnum(String cellnum) {
+		this.cellnum = cellnum;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
+	public Double getMoney() {
+		return money;
+	}
+
+	public void setMoney(Double money) {
+		this.money = money;
+	}
+
+	public Integer getAddrid() {
+		return addrid;
+	}
+
+	public void setAddrid(Integer addrid) {
+		this.addrid = addrid;
+	}
+
+}
