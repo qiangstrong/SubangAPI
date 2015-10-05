@@ -2,9 +2,7 @@ package com.subang.domain;
 
 import java.io.Serializable;
 
-import com.subang.bean.Result;
-
-public class Category extends Result implements Serializable {
+public class Category implements Serializable {
 
 	public static String iconPath = "image/info/category/";
 

@@ -10,9 +10,13 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
+
+import com.subang.bean.Result;
 
 /**
  * @author Qiang 与业务无关的公用函数
@@ -113,6 +117,14 @@ public class ComUtil extends BaseUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static Map<String, String> listToMap(List<Result> results) {
+		Map<String, String> map = new HashMap<String, String>();
+		for (Result result : results) {
+			map.put(result.getCode(), result.getMsg());
+		}
+		return map;
 	}
 
 	public static void main(String[] args) {

@@ -3,10 +3,9 @@ package com.subang.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import com.subang.bean.Result;
 import com.subang.domain.Order.State;
 
-public class History extends Result implements Serializable {
+public class History implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

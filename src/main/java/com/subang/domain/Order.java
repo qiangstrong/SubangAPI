@@ -3,10 +3,9 @@ package com.subang.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
-import com.subang.bean.Result;
 import com.subang.util.ComUtil;
 
-public class Order extends Result implements Serializable {
+public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

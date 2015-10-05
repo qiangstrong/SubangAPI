@@ -3,9 +3,7 @@ package com.subang.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import com.subang.bean.Result;
-
-public class Payment extends Result implements Serializable {
+public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public enum PayType {

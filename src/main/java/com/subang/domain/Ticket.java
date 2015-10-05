@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-import com.subang.bean.Result;
-
-public class Ticket extends Result implements Serializable {
+public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;

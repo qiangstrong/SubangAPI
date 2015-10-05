@@ -1,6 +1,6 @@
 package com.subang.bean;
 
-public class Area extends Result {
+public class Area {
 
 	public static Area toArea(String arg) {
 		final int layernum = 3;

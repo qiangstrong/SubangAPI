@@ -3,9 +3,7 @@ package com.subang.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import com.subang.bean.Result;
-
-public class Feedback extends Result implements Serializable {
+public class Feedback implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;

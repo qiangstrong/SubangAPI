@@ -2,10 +2,9 @@ package com.subang.domain;
 
 import java.io.Serializable;
 
-import com.subang.bean.Result;
 import com.subang.util.ComUtil;
 
-public class ClothesType extends Result implements Serializable {
+public class ClothesType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

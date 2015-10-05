@@ -19,19 +19,34 @@ public class BaseAPI {
 	protected static final String BASE_URI = HOST_URI + "app";
 	protected static final String CHARSET = "utf-8";
 
-	protected static String basePath;
 	protected static AppArg appArg;
 
-	protected static void init(String cellnum, String password, String basePath) {
+	protected static void conf(Integer type, String cellnum, String password) {
 		appArg = new AppArg();
+		appArg.setType(type);
 		appArg.setCellnum(cellnum);
 		appArg.setPassword(password);
-		BaseAPI.basePath = basePath;
+	}
+
+	protected static RequestBuilder getFreeRequestBuilder(Object data) {
+		RequestBuilder builder = RequestBuilder.post();
+		if (data != null) {
+			Set<Entry<String, String>> set = MapUtil.objectToSet(data);
+			for (Entry<String, String> entry : set) {
+				builder.addParameter(entry.getKey(), entry.getValue());
+			}
+		}
+		return builder;
+	}
+
+	protected static RequestBuilder getFreeRequestBuilder() {
+		return getFreeRequestBuilder(null);
 	}
 
 	protected static RequestBuilder getRequestBuilder(Object data, Object filter) {
 		appArg.generate();
 		RequestBuilder builder = RequestBuilder.post()
+				.addParameter("type_auth", appArg.getType().toString())
 				.addParameter("cellnum_auth", appArg.getCellnum())
 				.addParameter("timestamp_auth", appArg.getTimestamp())
 				.addParameter("signature_auth", appArg.getSignature());

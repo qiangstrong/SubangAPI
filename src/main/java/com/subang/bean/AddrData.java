@@ -6,7 +6,7 @@ import com.subang.domain.City;
 import com.subang.domain.District;
 import com.subang.domain.Region;
 
-public class AddrData extends Result {
+public class AddrData {
 	private List<City> citys;
 	private List<District> districts;
 	private List<Region> regions;

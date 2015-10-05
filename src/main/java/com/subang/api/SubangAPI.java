@@ -1,8 +1,8 @@
 package com.subang.api;
 
-public class SubangAPI extends BaseAPI {
+public class SubangAPI {
 
-	public static void conf(String cellnum, String password, String basePath) {
-		init(cellnum, password, basePath);
+	public static void conf(Integer type, String cellnum, String password) {
+		BaseAPI.conf(type, cellnum, password);
 	}
 }

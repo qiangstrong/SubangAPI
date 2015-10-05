@@ -2,9 +2,7 @@ package com.subang.domain;
 
 import java.io.Serializable;
 
-import com.subang.bean.Result;
-
-public class Worker extends Result implements Serializable {
+public class Worker implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

@@ -109,6 +109,9 @@ public class LocalHttpClient {
 			Class<T> clazz) {
 		List<JSONObject> listJson = execute(request,
 				JsonResponseHandler.createResponseHandler(charsetName, List.class));
+		if (listJson == null) {
+			return null;
+		}
 		List<T> listResult = new ArrayList<T>();
 		try {
 			for (JSONObject jsonObject : listJson) {
