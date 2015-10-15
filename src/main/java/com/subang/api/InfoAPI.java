@@ -12,7 +12,7 @@ public class InfoAPI extends BaseAPI {
 	public static Info getInfo() {
 		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/get.html")
 				.build();
-		Info info = LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, Info.class);
+		Info info = LocalHttpClient.executeJsonResult(httpUriRequest, Info.class);
 		return info;
 	}
 }

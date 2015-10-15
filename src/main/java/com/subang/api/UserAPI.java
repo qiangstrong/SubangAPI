@@ -3,6 +3,7 @@ package com.subang.api;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.bean.AddrData;
@@ -12,76 +13,84 @@ import com.subang.bean.TicketDetail;
 import com.subang.domain.Addr;
 import com.subang.domain.User;
 import com.subang.util.ComUtil;
+import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
 public class UserAPI extends BaseAPI {
 
 	private static final String URI_PREFIX = BASE_URI + "/user";
 
-	public static User get(Integer orderid) {
+	public static User get() {
 		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/get.html")
 				.build();
-		return LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, User.class);
+		return LocalHttpClient.executeJsonResult(httpUriRequest, User.class);
 	}
 
 	public static Result login(User user) {
-		HttpUriRequest httpUriRequest = getFreeRequestBuilder(user).setUri(
-				URI_PREFIX + "/login.html").build();
-		return LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, Result.class);
+		HttpEntity entity = EntityBuilder.create().addObject(user).build();
+		HttpUriRequest httpUriRequest = getFreeRequestBuilder().setUri(URI_PREFIX + "/login.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
 	public static Map<String, String> add(User user) {
-		HttpUriRequest httpUriRequest = getFreeRequestBuilder(user)
-				.setUri(URI_PREFIX + "/add.html").build();
-		List<Result> results = LocalHttpClient.executeJsonList(CHARSET, httpUriRequest,
-				Result.class);
+		HttpEntity entity = EntityBuilder.create().addObject(user).build();
+		HttpUriRequest httpUriRequest = getFreeRequestBuilder().setUri(URI_PREFIX + "/add.html")
+				.setEntity(entity).build();
+		List<Result> results = LocalHttpClient.executeJsonList(httpUriRequest, Result.class);
 		return ComUtil.listToMap(results);
 	}
 
 	public static Result chgCellnum(String cellnum) {
+		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
 		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/chgcellnum.html")
-				.addParameter("cellnum", cellnum).build();
-		return LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, Result.class);
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
 	public static Result chgPassword(String password) {
+		HttpEntity entity = EntityBuilder.create().addParameter("password", password).build();
 		HttpUriRequest httpUriRequest = getRequestBuilder()
-				.setUri(URI_PREFIX + "/chgpassword.html").addParameter("password", password)
-				.build();
-		return LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, Result.class);
+				.setUri(URI_PREFIX + "/chgpassword.html").setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
 	public static List<AddrDetail> listAddr(AddrDetail filter) {
-		HttpUriRequest httpUriRequest = getRequestBuilderFilter(filter).setUri(
-				URI_PREFIX + "/listaddr.html").build();
-		return LocalHttpClient.executeJsonList(CHARSET, httpUriRequest, AddrDetail.class);
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/listaddr.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonList(httpUriRequest, AddrDetail.class);
 	}
 
 	public static AddrData getAddrData(Integer regionid) {
+		HttpEntity entity = EntityBuilder.create().addParameter("regionid", regionid.toString())
+				.build();
 		HttpUriRequest httpUriRequest = getRequestBuilder()
-				.setUri(URI_PREFIX + "/getaddrdata.html")
-				.addParameter("regionid", regionid.toString()).build();
-		return LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, AddrData.class);
+				.setUri(URI_PREFIX + "/getaddrdata.html").setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, AddrData.class);
 	}
 
 	public static Map<String, String> addAddr(Addr addr) {
-		HttpUriRequest httpUriRequest = getRequestBuilderData(addr).setUri(
-				URI_PREFIX + "/addaddr.html").build();
-		List<Result> results = LocalHttpClient.executeJsonList(CHARSET, httpUriRequest,
-				Result.class);
+		HttpEntity entity = EntityBuilder.create().addObject(addr).build();
+		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/addaddr.html")
+				.setEntity(entity).build();
+		List<Result> results = LocalHttpClient.executeJsonList(httpUriRequest, Result.class);
 		return ComUtil.listToMap(results);
 	}
 
 	public static Result deleteAddr(Integer addrid) {
+		HttpEntity entity = EntityBuilder.create().addParameter("addrid", addrid.toString())
+				.build();
 		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/deleteaddr.html")
-				.addParameter("addrid", addrid.toString()).build();
-		return LocalHttpClient.executeJsonResult(CHARSET, httpUriRequest, Result.class);
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
 	public static List<TicketDetail> listTicket(TicketDetail filter) {
-		HttpUriRequest httpUriRequest = getRequestBuilderFilter(filter).setUri(
-				URI_PREFIX + "/listticket.html").build();
-		return LocalHttpClient.executeJsonList(CHARSET, httpUriRequest, TicketDetail.class);
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/listticket.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonList(httpUriRequest, TicketDetail.class);
 	}
 
 }
