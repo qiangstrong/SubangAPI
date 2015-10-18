@@ -1,5 +1,6 @@
 package com.subang.bean;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.subang.util.ComUtil;
@@ -64,7 +65,6 @@ public class AppArg {
 
 	public void generate() {
 		timestamp = ComUtil.getTimestamp();
-		signature = DigestUtils.shaHex(cellnum + password + timestamp);
+		signature = new String(Hex.encodeHex(DigestUtils.sha(cellnum + password + timestamp)));
 	}
-
 }

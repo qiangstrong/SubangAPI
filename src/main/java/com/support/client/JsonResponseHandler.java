@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.util.EntityUtils;
+import ytx.org.apache.http.HttpEntity;
+import ytx.org.apache.http.HttpResponse;
+import ytx.org.apache.http.client.ClientProtocolException;
+import ytx.org.apache.http.client.ResponseHandler;
+import ytx.org.apache.http.util.EntityUtils;
 
 import com.support.util.JsonUtil;
 

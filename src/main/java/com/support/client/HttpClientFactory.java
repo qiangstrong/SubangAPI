@@ -1,41 +1,30 @@
 package com.support.client;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.net.ssl.SSLContext;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContexts;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import ytx.org.apache.http.client.HttpClient;
+import ytx.org.apache.http.impl.client.DefaultHttpClient;
+import ytx.org.apache.http.impl.conn.PoolingClientConnectionManager;
+import ytx.org.apache.http.params.BasicHttpParams;
+import ytx.org.apache.http.params.HttpConnectionParams;
+import ytx.org.apache.http.params.HttpParams;
 
 public class HttpClientFactory {
 
+	public static HttpClient createHttpClient1() {
+		return new DefaultHttpClient();
+	}
+
 	public static HttpClient createHttpClient() {
-		try {
-			SSLContext sslContext = SSLContexts.custom().useSSL().build();
-			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(sslContext,
-					SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
 
-			PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
-			poolingHttpClientConnectionManager.setMaxTotal(HttpConst.MAX_TOTAL);
-			poolingHttpClientConnectionManager.setDefaultMaxPerRoute(HttpConst.MAX_PER_ROUTE);
+		PoolingClientConnectionManager poolingHttpClientConnectionManager = new PoolingClientConnectionManager();
+		poolingHttpClientConnectionManager.setMaxTotal(HttpConst.MAX_TOTAL);
 
-			RequestConfig config = RequestConfig.custom()
-					.setConnectTimeout(HttpConst.CONNECTION_TIMEOUT)
-					.setSocketTimeout(HttpConst.SOCKET_TIMEOUT).build();
+		HttpParams httpParams = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams, HttpConst.CONNECTION_TIMEOUT);
+		HttpConnectionParams.setSoTimeout(httpParams, HttpConst.SOCKET_TIMEOUT);
 
-			return HttpClientBuilder.create()
-					.setConnectionManager(poolingHttpClientConnectionManager)
-					.setDefaultRequestConfig(config).setSSLSocketFactory(sf).build();
-		} catch (KeyManagementException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return null;
+		HttpClient httpClient = new DefaultHttpClient(poolingHttpClientConnectionManager,
+				httpParams);
+		return httpClient;
+
 	}
 }

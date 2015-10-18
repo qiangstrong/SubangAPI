@@ -2,8 +2,8 @@ package com.subang.api;
 
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.HttpUriRequest;
+import ytx.org.apache.http.HttpEntity;
+import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.bean.Result;
 import com.subang.domain.City;
@@ -20,14 +20,14 @@ public class RegionAPI extends BaseAPI {
 
 	public static Integer setLocation(Location location) {
 		HttpEntity entity = EntityBuilder.create().addObject(location).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder()
-				.setUri(URI_PREFIX + "/setlocation.html").setEntity(entity).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/setlocation.html")
+				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Integer.class);
 	}
 
 	public static List<City> listCity(City filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/listcity.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listcity.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, City.class);
 	}
@@ -35,15 +35,15 @@ public class RegionAPI extends BaseAPI {
 	public static List<District> listDistrict(Integer cityid, District filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("cityid", cityid.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder()
-				.setUri(URI_PREFIX + "/listdistrict.html").setEntity(entity).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listdistrict.html")
+				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, District.class);
 	}
 
 	public static List<Region> listRegion(Integer districtid, Region filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("cityid", districtid.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/listregion.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listregion.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, Region.class);
 	}
@@ -51,14 +51,14 @@ public class RegionAPI extends BaseAPI {
 	public static City getCity(Integer cityid) {
 		HttpEntity entity = EntityBuilder.create().addParameter("cityid", cityid.toString())
 				.build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/getcity.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/getcity.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, City.class);
 	}
 
 	public static Result test() {
-		HttpEntity entity = EntityBuilder.create().addParameter("arg", "清").build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/test.html")
+		HttpEntity entity = EntityBuilder.create().addParameter("arg", "强").build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/test.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
@@ -66,6 +66,10 @@ public class RegionAPI extends BaseAPI {
 	public static void main(String[] args) {
 		SubangAPI.conf(APIConst.USER, "15502457990", "123");
 		Result result = test();
-		System.out.println();
+		if (result == null) {
+			System.err.println("发生错误。");
+		} else {
+			System.out.println(result.getMsg());
+		}
 	}
 }

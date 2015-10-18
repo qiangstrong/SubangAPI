@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.Args;
+import ytx.org.apache.http.HttpEntity;
+import ytx.org.apache.http.NameValuePair;
+import ytx.org.apache.http.client.entity.UrlEncodedFormEntity;
+import ytx.org.apache.http.message.BasicNameValuePair;
 
 import com.support.util.JsonUtil;
 import com.support.util.MapUtil;
@@ -33,7 +32,6 @@ public class EntityBuilder {
 	}
 
 	public EntityBuilder addParameter(final NameValuePair nvp) {
-		Args.notNull(nvp, "Name value pair");
 		if (parameters == null) {
 			parameters = new LinkedList<NameValuePair>();
 		}

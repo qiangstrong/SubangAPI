@@ -1,8 +1,7 @@
 package com.subang.api;
 
-import org.apache.http.client.methods.RequestBuilder;
-
 import com.subang.bean.AppArg;
+import com.support.client.PostBuilder;
 
 public class BaseAPI {
 
@@ -18,18 +17,19 @@ public class BaseAPI {
 		appArg.setPassword(password);
 	}
 
-	protected static RequestBuilder getFreeRequestBuilder() {
-		RequestBuilder builder = RequestBuilder.post();
+	protected static PostBuilder getFreePostBuilder() {
+		PostBuilder builder = PostBuilder.create();
 		return builder;
 	}
 
-	protected static RequestBuilder getRequestBuilder() {
+	protected static PostBuilder getPostBuilder() {
 		appArg.generate();
-		RequestBuilder builder = RequestBuilder.post()
+		PostBuilder builder = PostBuilder.create()
 				.addParameter("type_auth", appArg.getType().toString())
 				.addParameter("cellnum_auth", appArg.getCellnum())
 				.addParameter("timestamp_auth", appArg.getTimestamp())
 				.addParameter("signature_auth", appArg.getSignature());
 		return builder;
 	}
+
 }

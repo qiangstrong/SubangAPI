@@ -3,9 +3,9 @@ package com.support.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpUriRequest;
+import ytx.org.apache.http.client.HttpClient;
+import ytx.org.apache.http.client.ResponseHandler;
+import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.alibaba.fastjson.JSONObject;
 import com.support.util.JsonUtil;

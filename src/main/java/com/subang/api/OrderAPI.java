@@ -3,8 +3,8 @@ package com.subang.api;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.HttpUriRequest;
+import ytx.org.apache.http.HttpEntity;
+import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.bean.OrderDetail;
 import com.subang.bean.Result;
@@ -22,7 +22,7 @@ public class OrderAPI extends BaseAPI {
 	public static List<OrderDetail> userList(Integer stateType, OrderDetail filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("type", stateType.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/userlist.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/userlist.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, OrderDetail.class);
 	}
@@ -30,7 +30,7 @@ public class OrderAPI extends BaseAPI {
 	public static List<OrderDetail> workerList(Integer stateType, OrderDetail filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("type", stateType.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/workerlist.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/workerlist.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, OrderDetail.class);
 	}
@@ -38,14 +38,14 @@ public class OrderAPI extends BaseAPI {
 	public static OrderDetail get(Integer orderid) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/get.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/get.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, OrderDetail.class);
 	}
 
 	public static Map<String, String> add(Order order) {
 		HttpEntity entity = EntityBuilder.create().addObject(order).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/add.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/add.html")
 				.setEntity(entity).build();
 		List<Result> results = LocalHttpClient.executeJsonList(httpUriRequest, Result.class);
 		return ComUtil.listToMap(results);
@@ -54,7 +54,7 @@ public class OrderAPI extends BaseAPI {
 	public static Result price(Integer orderid, Double money) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.addParameter("money", money.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/price.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/price.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
@@ -62,7 +62,7 @@ public class OrderAPI extends BaseAPI {
 	public static Result fetch(Integer orderid, String barcode) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.addParameter("barcode", barcode).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/fetch.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/fetch.html")
 
 		.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
@@ -70,7 +70,7 @@ public class OrderAPI extends BaseAPI {
 
 	public static OrderDetail scan(String barcode) {
 		HttpEntity entity = EntityBuilder.create().addParameter("barcode", barcode).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/scan.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/scan.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, OrderDetail.class);
 	}
@@ -78,7 +78,7 @@ public class OrderAPI extends BaseAPI {
 	public static Result comment(Integer orderid, String comment) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.addParameter("comment", comment).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/comment.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/comment.html")
 
 		.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
@@ -87,7 +87,7 @@ public class OrderAPI extends BaseAPI {
 	public static Result cancel(Integer orderid) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/cancel.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/cancel.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
@@ -95,7 +95,7 @@ public class OrderAPI extends BaseAPI {
 	public static Result deliver(Integer orderid) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/deliver.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/deliver.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
@@ -103,7 +103,7 @@ public class OrderAPI extends BaseAPI {
 	public static Result remark(Integer orderid) {
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.build();
-		HttpUriRequest httpUriRequest = getRequestBuilder().setUri(URI_PREFIX + "/remark.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/remark.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
@@ -111,16 +111,16 @@ public class OrderAPI extends BaseAPI {
 	public static List<History> listHistory(Integer orderid, History filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("orderid", orderid.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder()
-				.setUri(URI_PREFIX + "/listhistory.html").setEntity(entity).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listhistory.html")
+				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, History.class);
 	}
 
 	public static List<Clothes> listClothes(Integer orderid, Clothes filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("orderid", orderid.toString()).build();
-		HttpUriRequest httpUriRequest = getRequestBuilder()
-				.setUri(URI_PREFIX + "/listclothes.html").setEntity(entity).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listclothes.html")
+				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, Clothes.class);
 	}
 
