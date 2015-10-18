@@ -11,6 +11,7 @@ import com.subang.bean.AddrDetail;
 import com.subang.bean.Result;
 import com.subang.bean.TicketDetail;
 import com.subang.domain.Addr;
+import com.subang.domain.Location;
 import com.subang.domain.User;
 import com.subang.util.ComUtil;
 import com.support.client.EntityBuilder;
@@ -92,4 +93,10 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonList(httpUriRequest, TicketDetail.class);
 	}
 
+	public static Result addLocation(Location location) {
+		HttpEntity entity = EntityBuilder.create().addObject(location).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/addlocation.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
+	}
 }

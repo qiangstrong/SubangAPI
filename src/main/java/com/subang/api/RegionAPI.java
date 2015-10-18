@@ -8,9 +8,8 @@ import ytx.org.apache.http.client.methods.HttpUriRequest;
 import com.subang.bean.Result;
 import com.subang.domain.City;
 import com.subang.domain.District;
-import com.subang.domain.Location;
 import com.subang.domain.Region;
-import com.subang.util.APIConst;
+import com.subang.util.WebConst;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
@@ -18,10 +17,9 @@ public class RegionAPI extends BaseAPI {
 
 	private static final String URI_PREFIX = BASE_URI + "/region";
 
-	public static Integer setLocation(Location location) {
-		HttpEntity entity = EntityBuilder.create().addObject(location).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/setlocation.html")
-				.setEntity(entity).build();
+	public static Integer getCityid() {
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/getcityid.html")
+				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Integer.class);
 	}
 
@@ -64,7 +62,7 @@ public class RegionAPI extends BaseAPI {
 	}
 
 	public static void main(String[] args) {
-		SubangAPI.conf(APIConst.USER, "15502457990", "123");
+		SubangAPI.conf(WebConst.USER, "15502457990", "123");
 		Result result = test();
 		if (result == null) {
 			System.err.println("发生错误。");
