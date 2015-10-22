@@ -5,6 +5,7 @@ import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.bean.Result;
 import com.subang.domain.Worker;
+import com.subang.util.Validator;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
@@ -27,6 +28,10 @@ public class WorkerAPI extends BaseAPI {
 	}
 
 	public static Result chgCellnum(String cellnum) {
+		Result result = Validator.ValidCellnum(cellnum);
+		if (result.getCode() != Result.OK) {
+			return result;
+		}
 		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/chgcellnum.html")
 				.setEntity(entity).build();
@@ -34,6 +39,10 @@ public class WorkerAPI extends BaseAPI {
 	}
 
 	public static Result chgPassword(String password) {
+		Result result = Validator.ValidPassword(password);
+		if (result.getCode() != Result.OK) {
+			return result;
+		}
 		HttpEntity entity = EntityBuilder.create().addParameter("password", password).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/chgpassword.html")
 				.setEntity(entity).build();

@@ -12,6 +12,7 @@ import com.subang.domain.Clothes;
 import com.subang.domain.History;
 import com.subang.domain.Order;
 import com.subang.util.ComUtil;
+import com.subang.util.Validator;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
@@ -76,11 +77,14 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result comment(Integer orderid, String comment) {
+		Result result = Validator.ValidMax100(comment);
+		if (result.getCode() != Result.OK) {
+			return result;
+		}
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.addParameter("comment", comment).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/comment.html")
-
-		.setEntity(entity).build();
+				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
@@ -100,9 +104,13 @@ public class OrderAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
-	public static Result remark(Integer orderid) {
+	public static Result remark(Integer orderid, String remark) {
+		Result result = Validator.ValidMax100(remark);
+		if (result.getCode() != Result.OK) {
+			return result;
+		}
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
-				.build();
+				.addParameter("remark", remark).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/remark.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
