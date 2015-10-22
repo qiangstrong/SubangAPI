@@ -111,7 +111,7 @@ public class OrderAPI extends BaseAPI {
 	public static List<History> listHistory(Integer orderid, History filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("orderid", orderid.toString()).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listhistory.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/history.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, History.class);
 	}
@@ -119,7 +119,7 @@ public class OrderAPI extends BaseAPI {
 	public static List<Clothes> listClothes(Integer orderid, Clothes filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
 				.addParameter("orderid", orderid.toString()).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listclothes.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/clothes.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, Clothes.class);
 	}

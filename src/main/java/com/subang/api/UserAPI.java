@@ -14,6 +14,7 @@ import com.subang.domain.Addr;
 import com.subang.domain.Location;
 import com.subang.domain.User;
 import com.subang.util.ComUtil;
+import com.subang.util.SuUtil;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
@@ -57,7 +58,7 @@ public class UserAPI extends BaseAPI {
 
 	public static List<AddrDetail> listAddr(AddrDetail filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listaddr.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/addr.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, AddrDetail.class);
 	}
@@ -88,14 +89,24 @@ public class UserAPI extends BaseAPI {
 
 	public static List<TicketDetail> listTicket(TicketDetail filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/listticket.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/ticket.html")
 				.setEntity(entity).build();
-		return LocalHttpClient.executeJsonList(httpUriRequest, TicketDetail.class);
+		List<TicketDetail> ticketDetails = LocalHttpClient.executeJsonList(httpUriRequest,
+				TicketDetail.class);
+		if (ticketDetails != null && filter.getIcon() != null) {
+			for (TicketDetail ticketDetail : ticketDetails) {
+				if (ticketDetail.getIcon() != null) {
+					SuUtil.saveUrl(HOST_URI + ticketDetail.getIcon(),
+							BASE_PATH + ticketDetail.getIcon());
+				}
+			}
+		}
+		return ticketDetails;
 	}
 
-	public static Result addLocation(Location location) {
+	public static Result setLocation(Location location) {
 		HttpEntity entity = EntityBuilder.create().addObject(location).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/addlocation.html")
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/setlocation.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}

@@ -7,14 +7,16 @@ public class BaseAPI {
 
 	protected static final String HOST_URI = "http://202.118.18.56/";
 	protected static final String BASE_URI = HOST_URI + "app";
+	protected static String BASE_PATH;
 
 	protected static AppArg appArg;
 
-	protected static void conf(Integer type, String cellnum, String password) {
+	protected static void conf(Integer type, String cellnum, String password, String basePath) {
 		appArg = new AppArg();
 		appArg.setType(type);
 		appArg.setCellnum(cellnum);
 		appArg.setPassword(password);
+		BASE_PATH = basePath;
 	}
 
 	protected static PostBuilder getFreePostBuilder() {
