@@ -22,7 +22,7 @@ public class PriceAPI extends BaseAPI {
 				.setEntity(entity).build();
 		List<Category> categorys = LocalHttpClient.executeJsonList(httpUriRequest, Category.class);
 
-		if (categorys != null && filter.getIcon() != null) {
+		if (categorys != null && (filter == null || filter.getIcon() != null)) {
 			for (Category category : categorys) {
 				if (category.getIcon() != null) {
 					SuUtil.saveUrl(HOST_URI + category.getIcon(), BASE_PATH + category.getIcon());

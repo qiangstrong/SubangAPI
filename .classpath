@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="E:/Documents/Workspaces/SubangAPI/lib/fastjson-1.2.0.jar" sourcepath="C:/Users/lenovo/.m2/repository/com/alibaba/fastjson/1.2.0/fastjson-1.2.0-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="E:/Documents/Workspaces/SubangAPI/lib/CCP_REST_SMS_SDK_JAVA_v2.6.3r.jar"/>
+	<classpathentry kind="lib" path="E:/Documents/Workspaces/SubangAPI/lib/openbeans-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

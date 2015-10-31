@@ -2,7 +2,8 @@ package com.subang.api;
 
 import org.junit.Test;
 
-import com.subang.util.SuUtil;
+import com.subang.bean.Result;
+import com.subang.domain.User;
 
 public class APITest {
 
@@ -12,7 +13,11 @@ public class APITest {
 
 	@Test
 	public void test() {
-		SuUtil.saveUrl(url_base + path, path_base + path);
+		User user = new User();
+		user.setCellnum("15502457990");
+		user.setPassword("123");
+		Result result = UserAPI.login(user);
+		pause();
 	}
 
 	public void pause() {

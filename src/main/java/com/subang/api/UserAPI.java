@@ -102,7 +102,7 @@ public class UserAPI extends BaseAPI {
 				.setEntity(entity).build();
 		List<TicketDetail> ticketDetails = LocalHttpClient.executeJsonList(httpUriRequest,
 				TicketDetail.class);
-		if (ticketDetails != null && filter.getIcon() != null) {
+		if (ticketDetails != null && (filter == null || filter.getIcon() != null)) {
 			for (TicketDetail ticketDetail : ticketDetails) {
 				if (ticketDetail.getIcon() != null) {
 					SuUtil.saveUrl(HOST_URI + ticketDetail.getIcon(),

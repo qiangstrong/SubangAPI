@@ -29,7 +29,7 @@ public class RegionAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/city.html")
 				.setEntity(entity).build();
 		List<City> citys = LocalHttpClient.executeJsonList(httpUriRequest, City.class);
-		if (citys != null && filter.getScope() != null) {
+		if (citys != null && (filter == null || filter.getScope() != null)) {
 			for (City city : citys) {
 				if (city.getScope() != null) {
 					SuUtil.saveUrl(HOST_URI + city.getScope(), BASE_PATH + city.getScope());
