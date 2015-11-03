@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import com.subang.domain.Order;
 import com.subang.domain.Payment.PayType;
+import com.subang.util.ComUtil;
 
 public class OrderDetail extends Order {
 
@@ -69,10 +70,16 @@ public class OrderDetail extends Order {
 	}
 
 	public PayType getPayTypeEnum() {
+		if (payType == null) {
+			return null;
+		}
 		return PayType.values()[payType];
 	}
 
 	public String getPayTypeDes() {
+		if (payType == null) {
+			return "未支付";
+		}
 		String description = null;
 		switch (getPayTypeEnum()) {
 		case balance:
@@ -87,10 +94,23 @@ public class OrderDetail extends Order {
 		}
 		return description;
 	}
-	
+
 	public String getPaymentDes() {
-		String description="";
+		String description = "";
+		description += "订单￥" + getMoneyDes() + "+";
+		description += "运费￥" + getFreightDes() + "-";
+		description += "优惠券￥" + getMoneyTicket();
 		return description;
+	}
+
+	public String getTotalMoneyDes() {
+		Double totalMoney;
+		if (money == null || freight == null) {
+			totalMoney = null;
+		} else {
+			totalMoney = money + freight;
+		}
+		return ComUtil.getDes(totalMoney);
 	}
 
 	public void setPayType(Integer payType) {

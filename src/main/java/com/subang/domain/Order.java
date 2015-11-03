@@ -80,11 +80,17 @@ public class Order implements Serializable {
 	}
 
 	public State getStateEnum() {
+		if (state == null) {
+			return null;
+		}
 		return State.values()[state];
 	}
 
 	public String getStateDes() {
 		String description = null;
+		if (state == null) {
+			return null;
+		}
 		switch (getStateEnum()) {
 		case accepted:
 			description = "已接受";

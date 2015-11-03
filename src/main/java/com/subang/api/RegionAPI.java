@@ -1,13 +1,16 @@
 package com.subang.api;
 
+import java.sql.Date;
 import java.util.List;
 
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
+import com.subang.bean.OrderDetail;
 import com.subang.bean.Result;
 import com.subang.domain.City;
 import com.subang.domain.District;
+import com.subang.domain.Order;
 import com.subang.domain.Region;
 import com.subang.util.SuUtil;
 import com.subang.util.WebConst;
@@ -77,11 +80,18 @@ public class RegionAPI extends BaseAPI {
 
 	public static void main(String[] args) {
 		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		Result result = test();
-		if (result == null) {
+		OrderDetail filter = new OrderDetail();
+		filter.setId(0);
+		filter.setOrderno("");
+		filter.setState(Order.State.accepted);
+		filter.setDate(new Date(System.currentTimeMillis()));
+		filter.setTime(0);
+		filter.setMoney(0.0);
+		filter.setFreight(0.0);
+		filter.setCategoryname("");
+		List<OrderDetail> orderDetails = OrderAPI.userList(WebConst.ORDER_STATE_UNDONE, filter);
+		if (orderDetails == null) {
 			System.err.println("发生错误。");
-		} else {
-			System.out.println(result.getMsg());
 		}
 	}
 }

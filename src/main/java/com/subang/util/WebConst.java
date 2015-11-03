@@ -37,6 +37,7 @@ public interface WebConst {
 	int AREA_REGION = 2;
 
 	// 前台部分
+	int ORDER_STATE_NULL = 0;
 	int ORDER_STATE_UNDONE = 2;
 	int ORDER_STATE_DONE = 3;
 

@@ -37,11 +37,17 @@ public class History implements Serializable {
 	}
 
 	public State getOperationEnum() {
+		if (operation == null) {
+			return null;
+		}
 		return State.values()[operation];
 	}
 
 	public String getOperationDes() {
 		String description = null;
+		if (operation == null) {
+			return null;
+		}
 		switch (getOperationEnum()) {
 		case accepted:
 			description = "下单";

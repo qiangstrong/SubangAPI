@@ -47,6 +47,9 @@ public class Payment implements Serializable {
 	}
 
 	public PayType getTypeEnum() {
+		if (type == null) {
+			return null;
+		}
 		return PayType.values()[type];
 	}
 

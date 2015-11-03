@@ -53,6 +53,9 @@ public class Worker implements Serializable {
 	}
 
 	public String getCoreDes() {
+		if (core == null) {
+			return null;
+		}
 		if (core) {
 			return "是";
 		}
