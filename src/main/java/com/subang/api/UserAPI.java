@@ -72,6 +72,12 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonList(httpUriRequest, AddrDetail.class);
 	}
 
+	public static AddrDetail getDefaultAddr() {
+		HttpUriRequest httpUriRequest = getPostBuilder()
+				.setUri(URI_PREFIX + "/getdefaultaddr.html").build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, AddrDetail.class);
+	}
+
 	public static AddrData getAddrData(Integer regionid) {
 		HttpEntity entity = EntityBuilder.create().addParameter("regionid", regionid.toString())
 				.build();

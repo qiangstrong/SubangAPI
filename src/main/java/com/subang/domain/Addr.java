@@ -37,7 +37,7 @@ public class Addr implements Serializable {
 		this.id = id;
 	}
 
-	public boolean isValid() {
+	public Boolean getValid() {
 		return valid;
 	}
 
