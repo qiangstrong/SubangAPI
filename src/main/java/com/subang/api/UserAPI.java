@@ -78,9 +78,8 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, AddrDetail.class);
 	}
 
-	public static AddrData getAddrData(Integer regionid) {
-		HttpEntity entity = EntityBuilder.create().addParameter("regionid", regionid.toString())
-				.build();
+	public static AddrData getAddrData() {
+		HttpEntity entity = EntityBuilder.create().build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/getaddrdata.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, AddrData.class);

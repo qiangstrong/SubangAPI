@@ -1,8 +1,6 @@
 package com.subang.api;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
@@ -10,7 +8,6 @@ import ytx.org.apache.http.client.methods.HttpUriRequest;
 import com.subang.bean.Result;
 import com.subang.domain.City;
 import com.subang.domain.District;
-import com.subang.domain.Order;
 import com.subang.domain.Region;
 import com.subang.util.SuUtil;
 import com.subang.util.WebConst;
@@ -52,7 +49,7 @@ public class RegionAPI extends BaseAPI {
 
 	public static List<Region> listRegion(Integer districtid, Region filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter)
-				.addParameter("cityid", districtid.toString()).build();
+				.addParameter("districtid", districtid.toString()).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/region.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonList(httpUriRequest, Region.class);
@@ -80,13 +77,7 @@ public class RegionAPI extends BaseAPI {
 
 	public static void main(String[] args) {
 		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		Order order = new Order();
-		order.setCategoryid(1);
-		order.setAddrid(4);
-		order.setDate(new Date(System.currentTimeMillis()));
-		order.setTime(10);
-		order.setUserComment("123");
-		Map<String, String> errors = OrderAPI.add(order);
-		System.out.println();
+		List<Region> regions = listRegion(1, null);
+		System.out.println(regions);
 	}
 }

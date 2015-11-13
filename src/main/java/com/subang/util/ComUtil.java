@@ -92,6 +92,9 @@ public class ComUtil extends BaseUtil {
 	}
 
 	public static Map<String, String> listToMap(List<Result> results) {
+		if (results == null) {
+			return null;
+		}
 		Map<String, String> map = new HashMap<String, String>();
 		for (Result result : results) {
 			map.put(result.getCode(), result.getMsg());
