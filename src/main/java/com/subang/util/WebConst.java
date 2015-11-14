@@ -6,6 +6,12 @@ public interface WebConst {
 	int WORKER = 1;
 	int OTHER = 2;
 
+	int AUTHCODE_LENGTH = 4;
+
+	int AUTHCODE_INTERVAL = 5 * 60 * 1000; // 验证码过期时间，5分钟，单位毫秒
+	int AUTHCODE_NEXT_INTERVAL = 60;// 下一次获取验证码的间隔。60秒
+	int ONE_SECOND = 1 * 1000;// 1秒
+
 	int SEARCH_NULL = 0;
 	int SEARCH_ALL = 1;
 	int SEARCH_NAME = 2; // 按用户昵称，商家名称等进行搜索

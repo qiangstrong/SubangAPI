@@ -15,4 +15,9 @@ public class SubangAPI {
 		}
 		return true;
 	}
+
+	public static void invalidate() {
+		BaseAPI.BASE_PATH = null;
+		BaseAPI.appArg = null;
+	}
 }

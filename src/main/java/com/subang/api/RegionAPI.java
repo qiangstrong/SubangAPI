@@ -9,6 +9,8 @@ import com.subang.bean.Result;
 import com.subang.domain.City;
 import com.subang.domain.District;
 import com.subang.domain.Region;
+import com.subang.util.AppConst;
+import com.subang.util.SmsUtil;
 import com.subang.util.SuUtil;
 import com.subang.util.WebConst;
 import com.support.client.EntityBuilder;
@@ -77,7 +79,8 @@ public class RegionAPI extends BaseAPI {
 
 	public static void main(String[] args) {
 		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		List<Region> regions = listRegion(1, null);
-		System.out.println(regions);
+		SmsUtil.init();
+		SmsUtil.send("15502457990", AppConst.templateId_authcode, SmsUtil.toUserContent("1234"));
+		System.out.println();
 	}
 }

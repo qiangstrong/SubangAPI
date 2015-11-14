@@ -43,6 +43,17 @@ public class UserAPI extends BaseAPI {
 		return ComUtil.listToMap(results);
 	}
 
+	public static Result chkCellnum(String cellnum) {
+		Result result = Validator.ValidCellnum(cellnum);
+		if (result.getCode() != Result.OK) {
+			return result;
+		}
+		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
+		HttpUriRequest httpUriRequest = getFreePostBuilder()
+				.setUri(URI_PREFIX + "/chkcellnum.html").setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
+	}
+
 	public static Result chgCellnum(String cellnum) {
 		Result result = Validator.ValidCellnum(cellnum);
 		if (result.getCode() != Result.OK) {
