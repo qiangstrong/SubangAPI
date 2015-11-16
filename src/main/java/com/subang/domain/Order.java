@@ -248,7 +248,30 @@ public class Order implements Serializable {
 		this.laundryid = laundryid;
 	}
 
-	public boolean isDone() {
+	public Boolean isPaid() { // 由于要使用网络传输order，boolean类型是基本类型，无法为null
+		if (state == null) {
+			return null;
+		}
+		if (state >= State.paid.ordinal() && getStateEnum() != State.canceled) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean isChecked() {
+		if (state == null) {
+			return null;
+		}
+		if (state >= State.checked.ordinal() && getStateEnum() != State.canceled) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean isDone() {
+		if (state == null) {
+			return null;
+		}
 		State stateEnum = getStateEnum();
 		if (stateEnum == State.delivered || stateEnum == State.remarked
 				|| stateEnum == State.canceled) {

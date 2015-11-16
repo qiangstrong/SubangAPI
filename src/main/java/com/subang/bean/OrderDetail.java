@@ -113,6 +113,16 @@ public class OrderDetail extends Order {
 		return ComUtil.getDes(totalMoney);
 	}
 
+	public String getActualMoneyDes() {
+		Double actualMoney;
+		if (money == null || freight == null || moneyTicket == null) {
+			actualMoney = null;
+		} else {
+			actualMoney = money + freight - moneyTicket;
+		}
+		return ComUtil.getDes(actualMoney);
+	}
+
 	public void setPayType(Integer payType) {
 		this.payType = payType;
 	}

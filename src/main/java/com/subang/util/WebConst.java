@@ -5,6 +5,7 @@ public interface WebConst {
 	int USER = 0;
 	int WORKER = 1;
 	int OTHER = 2;
+	String LOG_TAG = "subang";
 
 	int AUTHCODE_LENGTH = 4;
 
