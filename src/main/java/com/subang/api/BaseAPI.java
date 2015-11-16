@@ -1,12 +1,12 @@
 package com.subang.api;
 
 import com.subang.bean.AppArg;
+import com.subang.util.WebConst;
 import com.support.client.PostBuilder;
 
 public class BaseAPI {
 
-	protected static final String HOST_URI = "http://202.118.18.56/";
-	protected static final String BASE_URI = HOST_URI + "app";
+	protected static final String BASE_URI = WebConst.HOST_URI + "app";
 	protected static String BASE_PATH;
 
 	protected static AppArg appArg;

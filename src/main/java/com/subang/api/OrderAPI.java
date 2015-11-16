@@ -77,7 +77,7 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result comment(Integer orderid, String comment) {
-		Result result = Validator.ValidMax100(comment);
+		Result result = Validator.ValidMax(100, comment);
 		if (result.getCode() != Result.OK) {
 			return result;
 		}
@@ -105,7 +105,7 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result remark(Integer orderid, String remark) {
-		Result result = Validator.ValidMax100(remark);
+		Result result = Validator.ValidMax(100, remark);
 		if (result.getCode() != Result.OK) {
 			return result;
 		}

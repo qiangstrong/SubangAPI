@@ -52,16 +52,16 @@ public class Validator extends BaseUtil {
 		return result;
 	}
 
-	public static Result ValidMax100(String string) {
+	public static Result ValidMax(int length, String string) {
 		Result result = new Result();
 		if (string == null) {
 			result.setCode(Result.ERR);
 			result.setMsg("不能为空。");
 			return result;
 		}
-		if (string.length() > 100) {
+		if (string.length() > length) {
 			result.setCode(Result.ERR);
-			result.setMsg("长度不能超过100个字符。");
+			result.setMsg("长度不能超过" + length + "个字符。");
 			return result;
 		}
 		result.setCode(Result.OK);

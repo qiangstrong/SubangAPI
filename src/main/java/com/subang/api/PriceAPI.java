@@ -8,6 +8,7 @@ import ytx.org.apache.http.client.methods.HttpUriRequest;
 import com.subang.domain.Category;
 import com.subang.domain.Price;
 import com.subang.util.SuUtil;
+import com.subang.util.WebConst;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
@@ -25,7 +26,8 @@ public class PriceAPI extends BaseAPI {
 		if (categorys != null && (filter == null || filter.getIcon() != null)) {
 			for (Category category : categorys) {
 				if (category.getIcon() != null) {
-					SuUtil.saveUrl(HOST_URI + category.getIcon(), BASE_PATH + category.getIcon());
+					SuUtil.saveUrl(WebConst.HOST_URI + category.getIcon(),
+							BASE_PATH + category.getIcon());
 				}
 			}
 		}
@@ -40,7 +42,7 @@ public class PriceAPI extends BaseAPI {
 				.setEntity(entity).build();
 		Category category = LocalHttpClient.executeJsonResult(httpUriRequest, Category.class);
 		if (category != null && category.getIcon() != null) {
-			SuUtil.saveUrl(HOST_URI + category.getIcon(), BASE_PATH + category.getIcon());
+			SuUtil.saveUrl(WebConst.HOST_URI + category.getIcon(), BASE_PATH + category.getIcon());
 		}
 		return category;
 	}

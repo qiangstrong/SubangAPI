@@ -16,6 +16,7 @@ import com.subang.domain.User;
 import com.subang.util.ComUtil;
 import com.subang.util.SuUtil;
 import com.subang.util.Validator;
+import com.subang.util.WebConst;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
 
@@ -121,8 +122,8 @@ public class UserAPI extends BaseAPI {
 		if (ticketDetails != null && (filter == null || filter.getIcon() != null)) {
 			for (TicketDetail ticketDetail : ticketDetails) {
 				if (ticketDetail.getIcon() != null) {
-					SuUtil.saveUrl(HOST_URI + ticketDetail.getIcon(),
-							BASE_PATH + ticketDetail.getIcon());
+					SuUtil.saveUrl(WebConst.HOST_URI + ticketDetail.getIcon(), BASE_PATH
+							+ ticketDetail.getIcon());
 				}
 			}
 		}

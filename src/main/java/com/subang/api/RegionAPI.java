@@ -9,8 +9,6 @@ import com.subang.bean.Result;
 import com.subang.domain.City;
 import com.subang.domain.District;
 import com.subang.domain.Region;
-import com.subang.util.AppConst;
-import com.subang.util.SmsUtil;
 import com.subang.util.SuUtil;
 import com.subang.util.WebConst;
 import com.support.client.EntityBuilder;
@@ -34,7 +32,7 @@ public class RegionAPI extends BaseAPI {
 		if (citys != null && (filter == null || filter.getScope() != null)) {
 			for (City city : citys) {
 				if (city.getScope() != null) {
-					SuUtil.saveUrl(HOST_URI + city.getScope(), BASE_PATH + city.getScope());
+					SuUtil.saveUrl(WebConst.HOST_URI + city.getScope(), BASE_PATH + city.getScope());
 				}
 			}
 		}
@@ -64,7 +62,7 @@ public class RegionAPI extends BaseAPI {
 				.setEntity(entity).build();
 		City city = LocalHttpClient.executeJsonResult(httpUriRequest, City.class);
 		if (city != null && city.getScope() != null) {
-			SuUtil.saveUrl(HOST_URI + city.getScope(), BASE_PATH + city.getScope());
+			SuUtil.saveUrl(WebConst.HOST_URI + city.getScope(), BASE_PATH + city.getScope());
 		}
 
 		return city;
@@ -79,8 +77,7 @@ public class RegionAPI extends BaseAPI {
 
 	public static void main(String[] args) {
 		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		SmsUtil.init();
-		SmsUtil.send("15502457990", AppConst.templateId_authcode, SmsUtil.toUserContent("1234"));
-		System.out.println();
+		Result result = InfoAPI.addFeedback("你好，速帮。");
+		System.out.println(result);
 	}
 }

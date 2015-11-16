@@ -2,10 +2,13 @@ package com.subang.util;
 
 public interface WebConst {
 
+	String HOST_NAME = "202.118.18.56";// 用于比较url是否在我们的域名下
+	String HOST_URI = "http://202.118.18.56/";
+	String LOG_TAG = "subang";
+
 	int USER = 0;
 	int WORKER = 1;
 	int OTHER = 2;
-	String LOG_TAG = "subang";
 
 	int AUTHCODE_LENGTH = 4;
 
