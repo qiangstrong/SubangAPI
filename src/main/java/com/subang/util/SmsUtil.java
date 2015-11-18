@@ -42,7 +42,7 @@ public class SmsUtil extends BaseUtil {
 		return content;
 	}
 
-	public static String[] toUserContent(String authcode) {
+	public static String[] toAuthcodeContent(String authcode) {
 		return new String[] { authcode };
 	}
 }

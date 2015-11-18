@@ -1,6 +1,8 @@
 package com.subang.util;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +23,7 @@ public class ComUtil extends BaseUtil {
 	public static Random random = new Random();
 	public static Timer timer = new Timer();
 	public static NumberFormat nf = NumberFormat.getInstance();
+	public static DecimalFormat df = new DecimalFormat("#.0");
 	public static SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd");
 	public static SimpleDateFormat sdf_datetime = new SimpleDateFormat("yyyyMMddHHmmss");
 
@@ -100,6 +103,13 @@ public class ComUtil extends BaseUtil {
 			map.put(result.getCode(), result.getMsg());
 		}
 		return map;
+	}
+
+	public static Double round(Double d) {
+		if (d == null) {
+			return null;
+		}
+		return BigDecimal.valueOf(d).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public static void main(String[] args) {

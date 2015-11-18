@@ -5,6 +5,7 @@ import java.util.List;
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
+import com.subang.bean.OrderDetail;
 import com.subang.bean.Result;
 import com.subang.domain.City;
 import com.subang.domain.District;
@@ -76,8 +77,8 @@ public class RegionAPI extends BaseAPI {
 	}
 
 	public static void main(String[] args) {
-		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		Result result = InfoAPI.addFeedback("你好，速帮。");
-		System.out.println(result);
+		SubangAPI.conf(WebConst.WORKER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
+		List<OrderDetail> orderDetails = OrderAPI.workerList(WebConst.ORDER_STATE_FETCH, null);
+		System.out.println(orderDetails);
 	}
 }
