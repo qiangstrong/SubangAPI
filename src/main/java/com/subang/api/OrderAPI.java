@@ -36,9 +36,9 @@ public class OrderAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonList(httpUriRequest, OrderDetail.class);
 	}
 
-	public static OrderDetail get(Integer orderid) {
-		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
-				.build();
+	public static OrderDetail get(Integer getType, String arg) {
+		HttpEntity entity = EntityBuilder.create().addParameter("type", getType.toString())
+				.addParameter("arg", arg).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/get.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, OrderDetail.class);
@@ -67,13 +67,6 @@ public class OrderAPI extends BaseAPI {
 
 		.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
-	}
-
-	public static OrderDetail scan(String barcode) {
-		HttpEntity entity = EntityBuilder.create().addParameter("barcode", barcode).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/scan.html")
-				.setEntity(entity).build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest, OrderDetail.class);
 	}
 
 	public static Result comment(Integer orderid, String comment) {

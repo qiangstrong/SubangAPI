@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.subang.domain.Order.State;
+import com.subang.util.ComUtil;
 
 public class History implements Serializable {
 
@@ -87,6 +88,13 @@ public class History implements Serializable {
 
 	public Timestamp getTime() {
 		return time;
+	}
+
+	public String getTimeDes() {
+		if (time == null) {
+			return null;
+		}
+		return ComUtil.sdf_datetime.format(time);
 	}
 
 	public void setTime(Timestamp time) {

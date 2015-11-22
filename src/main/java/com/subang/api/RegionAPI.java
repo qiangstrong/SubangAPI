@@ -78,7 +78,7 @@ public class RegionAPI extends BaseAPI {
 
 	public static void main(String[] args) {
 		SubangAPI.conf(WebConst.WORKER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		List<OrderDetail> orderDetails = OrderAPI.workerList(WebConst.ORDER_STATE_FETCH, null);
+		OrderDetail orderDetails = OrderAPI.get(WebConst.ORDER_GET_BARCODE, "9787121194856");
 		System.out.println(orderDetails);
 	}
 }
