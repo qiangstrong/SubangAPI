@@ -78,22 +78,7 @@ public class OrderDetail extends Order {
 	}
 
 	public String getPayTypeDes() {
-		if (payType == null) {
-			return "未支付";
-		}
-		String description = null;
-		switch (getPayTypeEnum()) {
-		case balance:
-			description = "余额";
-			break;
-		case weixin:
-			description = "微信";
-			break;
-		case alipay:
-			description = "支付宝";
-			break;
-		}
-		return description;
+		return PayType.toPayTypeDes(getPayTypeEnum());
 	}
 
 	public String getPaymentDes() {
@@ -209,5 +194,15 @@ public class OrderDetail extends Order {
 
 	public void setWorkercellnum(String workercellnum) {
 		this.workercellnum = workercellnum;
+	}
+
+	public Boolean isTicket() {
+		if (moneyTicket == null) {
+			return null;
+		}
+		if (moneyTicket == 0.0) {
+			return false;
+		}
+		return true;
 	}
 }

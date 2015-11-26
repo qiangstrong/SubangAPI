@@ -11,6 +11,7 @@ import com.subang.bean.AddrDetail;
 import com.subang.bean.Result;
 import com.subang.bean.TicketDetail;
 import com.subang.domain.Addr;
+import com.subang.domain.Balance;
 import com.subang.domain.Location;
 import com.subang.domain.User;
 import com.subang.util.ComUtil;
@@ -128,6 +129,22 @@ public class UserAPI extends BaseAPI {
 			}
 		}
 		return ticketDetails;
+	}
+
+	public static Result addTicket(Integer ticketTypeid) {
+		HttpEntity entity = EntityBuilder.create()
+				.addParameter("tickettypeid", ticketTypeid.toString()).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/addticket.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
+	}
+
+	public static List<Balance> listBalance(Balance filter) {
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/balance.html")
+				.setEntity(entity).build();
+		List<Balance> balances = LocalHttpClient.executeJsonList(httpUriRequest, Balance.class);
+		return balances;
 	}
 
 	public static Result setLocation(Location location) {

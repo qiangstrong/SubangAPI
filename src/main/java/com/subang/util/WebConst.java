@@ -58,5 +58,4 @@ public interface WebConst {
 	int ORDER_GET_ID = 1;
 	int ORDER_GET_BARCODE = 2;
 
-	int EXPIRED_INTERVAL = 60; // 重复通知过滤 时效60秒
 }

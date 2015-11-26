@@ -9,6 +9,10 @@ public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public enum OrderType {
+		order, balance
+	}
+
 	public enum State {
 		accepted, priced, paid, fetched, checked, delivered, remarked, canceled;
 
@@ -137,7 +141,7 @@ public class Order implements Serializable {
 	}
 
 	public void setMoney(Double money) {
-		this.money = money;
+		this.money = ComUtil.round(money);
 	}
 
 	public Double getFreight() {
@@ -149,7 +153,7 @@ public class Order implements Serializable {
 	}
 
 	public void setFreight(Double freight) {
-		this.freight = freight;
+		this.freight = ComUtil.round(freight);
 	}
 
 	public Date getDate() {
