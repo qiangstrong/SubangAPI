@@ -114,8 +114,13 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
-	public static List<TicketDetail> listTicket(TicketDetail filter) {
-		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+	// categoryid为null，列出用户的所有优惠券
+	public static List<TicketDetail> listTicket(Integer categoryid, TicketDetail filter) {
+		EntityBuilder builder = EntityBuilder.create().addFilter(filter);
+		if (categoryid != null) {
+			builder.addParameter("categoryid", categoryid.toString());
+		}
+		HttpEntity entity = builder.build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/ticket.html")
 				.setEntity(entity).build();
 		List<TicketDetail> ticketDetails = LocalHttpClient.executeJsonList(httpUriRequest,

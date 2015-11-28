@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import com.support.client.HttpConst;
+import com.support.util.HttpConst;
 
 /**
  * @author Qiang 与业务相关的公用函数

@@ -1,5 +1,7 @@
 package com.support.client;
 
+import com.support.util.HttpConst;
+
 import ytx.org.apache.http.client.HttpClient;
 import ytx.org.apache.http.impl.client.DefaultHttpClient;
 import ytx.org.apache.http.impl.conn.PoolingClientConnectionManager;
@@ -8,10 +10,6 @@ import ytx.org.apache.http.params.HttpConnectionParams;
 import ytx.org.apache.http.params.HttpParams;
 
 public class HttpClientFactory {
-
-	public static HttpClient createHttpClient1() {
-		return new DefaultHttpClient();
-	}
 
 	public static HttpClient createHttpClient() {
 

@@ -5,8 +5,8 @@ import java.util.List;
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
-import com.subang.bean.OrderDetail;
 import com.subang.bean.Result;
+import com.subang.bean.TicketDetail;
 import com.subang.domain.City;
 import com.subang.domain.District;
 import com.subang.domain.Region;
@@ -77,8 +77,8 @@ public class RegionAPI extends BaseAPI {
 	}
 
 	public static void main(String[] args) {
-		SubangAPI.conf(WebConst.WORKER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码");
-		OrderDetail orderDetails = OrderAPI.get(WebConst.ORDER_GET_BARCODE, "9787121194856");
-		System.out.println(orderDetails);
+		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码\\");
+		List<TicketDetail> ticketDetails = UserAPI.listTicket(null, null);
+		System.out.println(ticketDetails);
 	}
 }
