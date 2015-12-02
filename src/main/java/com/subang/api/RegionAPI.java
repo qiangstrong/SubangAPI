@@ -5,10 +5,12 @@ import java.util.List;
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
+import com.subang.bean.BasePrepayResult;
+import com.subang.bean.PayArg;
 import com.subang.bean.Result;
-import com.subang.bean.TicketDetail;
 import com.subang.domain.City;
 import com.subang.domain.District;
+import com.subang.domain.Payment.PayType;
 import com.subang.domain.Region;
 import com.subang.util.SuUtil;
 import com.subang.util.WebConst;
@@ -78,7 +80,11 @@ public class RegionAPI extends BaseAPI {
 
 	public static void main(String[] args) {
 		SubangAPI.conf(WebConst.USER, "15502457990", "123", "C:\\Users\\lenovo\\Desktop\\临时\\转码\\");
-		List<TicketDetail> ticketDetails = UserAPI.listTicket(null, null);
-		System.out.println(ticketDetails);
+		PayArg payArg = new PayArg();
+		payArg.setClient(PayArg.Client.user);
+		payArg.setPayType(PayType.weixin);
+		BasePrepayResult prepayResult = OrderAPI.prepay(payArg);
+
+		System.out.println(prepayResult);
 	}
 }

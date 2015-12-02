@@ -8,8 +8,11 @@ import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.bean.AddrData;
 import com.subang.bean.AddrDetail;
+import com.subang.bean.BasePrepayResult;
+import com.subang.bean.PayArg;
 import com.subang.bean.Result;
 import com.subang.bean.TicketDetail;
+import com.subang.bean.WeixinPrepayResult;
 import com.subang.domain.Addr;
 import com.subang.domain.Balance;
 import com.subang.domain.Location;
@@ -150,6 +153,24 @@ public class UserAPI extends BaseAPI {
 				.setEntity(entity).build();
 		List<Balance> balances = LocalHttpClient.executeJsonList(httpUriRequest, Balance.class);
 		return balances;
+	}
+
+	public static BasePrepayResult prepay(PayArg payArg) {
+		HttpEntity entity = EntityBuilder.create().addObject(payArg).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/prepay.html")
+				.setEntity(entity).build();
+		Class clazz;
+		switch (payArg.getPayTypeEnum()) {
+		case weixin: {
+			clazz = WeixinPrepayResult.class;
+			break;
+		}
+		default: {
+			clazz = BasePrepayResult.class;
+			break;
+		}
+		}
+		return LocalHttpClient.executeJsonResult(httpUriRequest, clazz);
 	}
 
 	public static Result setLocation(Location location) {

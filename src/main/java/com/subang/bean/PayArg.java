@@ -4,6 +4,12 @@ import com.subang.domain.Payment.PayType;
 import com.subang.util.ComUtil;
 
 public class PayArg {
+
+	public enum Client {
+		weixin, user
+	}
+
+	private Integer client; // 微信端，不传此参数；app端传此参数
 	private Integer payType;
 	private Integer orderid;
 	private Integer ticketid; // 若没有使用优惠券，不传参数即可。后台得到的为null
@@ -12,12 +18,32 @@ public class PayArg {
 	public PayArg() {
 	}
 
-	public PayArg(Integer payType, Integer orderid, Integer ticketid, Double money) {
+	public PayArg(Integer client, Integer payType, Integer orderid, Integer ticketid, Double money) {
 		super();
+		this.client = client;
 		this.payType = payType;
 		this.orderid = orderid;
 		this.ticketid = ticketid;
 		this.money = money;
+	}
+
+	public Integer getClient() {
+		return client;
+	}
+
+	public Client getClientEnum() {
+		if (client == null) {
+			return null;
+		}
+		return Client.values()[client];
+	}
+
+	public void setClient(Integer client) {
+		this.client = client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client.ordinal();
 	}
 
 	public Integer getPayType() {
@@ -33,6 +59,10 @@ public class PayArg {
 
 	public void setPayType(Integer payType) {
 		this.payType = payType;
+	}
+
+	public void setPayType(PayType payType) {
+		this.payType = payType.ordinal();
 	}
 
 	public Integer getOrderid() {

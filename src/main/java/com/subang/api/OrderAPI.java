@@ -6,8 +6,11 @@ import java.util.Map;
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
+import com.subang.bean.BasePrepayResult;
 import com.subang.bean.OrderDetail;
+import com.subang.bean.PayArg;
 import com.subang.bean.Result;
+import com.subang.bean.WeixinPrepayResult;
 import com.subang.domain.Clothes;
 import com.subang.domain.History;
 import com.subang.domain.Order;
@@ -107,6 +110,28 @@ public class OrderAPI extends BaseAPI {
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/remark.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
+	}
+
+	public static BasePrepayResult prepay(PayArg payArg) {
+		HttpEntity entity = EntityBuilder.create().addObject(payArg).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/prepay.html")
+				.setEntity(entity).build();
+		Class clazz;
+		switch (payArg.getPayTypeEnum()) {
+		case balance: {
+			clazz = BasePrepayResult.class;
+			break;
+		}
+		case weixin: {
+			clazz = WeixinPrepayResult.class;
+			break;
+		}
+		default: {
+			clazz = BasePrepayResult.class;
+			break;
+		}
+		}
+		return LocalHttpClient.executeJsonResult(httpUriRequest, clazz);
 	}
 
 	public static List<History> listHistory(Integer orderid, History filter) {
