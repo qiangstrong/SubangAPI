@@ -1,6 +1,10 @@
 package com.subang.bean;
 
-public class BasePrepayResult {
+import java.io.Serializable;
+
+public class BasePrepayResult implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public enum Code {
 		succ, fail, conti

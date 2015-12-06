@@ -1,6 +1,10 @@
 package com.subang.bean;
 
-public class Area {
+import java.io.Serializable;
+
+public class Area implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public static Area toArea(String arg) {
 		final int layernum = 3;

@@ -1,9 +1,13 @@
 package com.subang.bean;
 
+import java.io.Serializable;
+
 import com.subang.domain.Payment.PayType;
 import com.subang.util.ComUtil;
 
-public class PayArg {
+public class PayArg implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public enum Client {
 		weixin, user

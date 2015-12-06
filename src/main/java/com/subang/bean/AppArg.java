@@ -1,11 +1,16 @@
 package com.subang.bean;
 
+import java.io.Serializable;
+
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.subang.util.ComUtil;
 
-public class AppArg {
+public class AppArg implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private Integer type;
 	private String cellnum;
 	private String password;

@@ -6,6 +6,7 @@ import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.domain.Banner;
+import com.subang.domain.Rebate;
 import com.subang.domain.TicketType;
 import com.subang.util.SuUtil;
 import com.subang.util.WebConst;
@@ -61,5 +62,13 @@ public class ActivityAPI extends BaseAPI {
 			}
 		}
 		return banners;
+	}
+
+	public static List<Rebate> listRebate(Rebate filter) {
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/rebate.html")
+				.setEntity(entity).build();
+		List<Rebate> rebates = LocalHttpClient.executeJsonList(httpUriRequest, Rebate.class);
+		return rebates;
 	}
 }
