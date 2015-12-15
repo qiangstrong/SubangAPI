@@ -55,6 +55,13 @@ public class Balance implements Serializable {
 		return state;
 	}
 
+	public State getStateEnum() {
+		if (state == null) {
+			return null;
+		}
+		return State.values()[state];
+	}
+
 	public void setState(Integer state) {
 		this.state = state;
 	}

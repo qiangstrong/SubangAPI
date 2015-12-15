@@ -10,7 +10,7 @@ public class PayArg implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public enum Client {
-		weixin, user
+		weixin, user, worker
 	}
 
 	private Integer client; // 微信端，不传此参数；app端传此参数

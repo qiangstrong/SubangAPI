@@ -6,6 +6,7 @@ import java.util.Map;
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
 
+import com.subang.bean.AliPrepayResult;
 import com.subang.bean.BasePrepayResult;
 import com.subang.bean.OrderDetail;
 import com.subang.bean.PayArg;
@@ -124,6 +125,10 @@ public class OrderAPI extends BaseAPI {
 		}
 		case weixin: {
 			clazz = WeixinPrepayResult.class;
+			break;
+		}
+		case alipay: {
+			clazz = AliPrepayResult.class;
 			break;
 		}
 		default: {

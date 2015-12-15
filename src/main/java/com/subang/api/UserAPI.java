@@ -8,6 +8,7 @@ import ytx.org.apache.http.client.methods.HttpUriRequest;
 
 import com.subang.bean.AddrData;
 import com.subang.bean.AddrDetail;
+import com.subang.bean.AliPrepayResult;
 import com.subang.bean.BasePrepayResult;
 import com.subang.bean.PayArg;
 import com.subang.bean.Result;
@@ -163,6 +164,10 @@ public class UserAPI extends BaseAPI {
 		switch (payArg.getPayTypeEnum()) {
 		case weixin: {
 			clazz = WeixinPrepayResult.class;
+			break;
+		}
+		case alipay: {
+			clazz = AliPrepayResult.class;
 			break;
 		}
 		default: {
