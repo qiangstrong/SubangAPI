@@ -15,7 +15,7 @@ public interface WebConst {
 	int AUTHCODE_LENGTH = 4;
 
 	int AUTHCODE_INTERVAL = 5 * 60 * 1000; // 验证码过期时间，5分钟，单位毫秒
-	int AUTHCODE_NEXT_INTERVAL = 30;// 下一次获取验证码的间隔。60秒
+	int AUTHCODE_NEXT_INTERVAL = 60;// 下一次获取验证码的间隔。60秒
 	int ONE_SECOND = 1 * 1000;// 1秒
 
 	int SEARCH_NULL = 0;
@@ -33,6 +33,8 @@ public interface WebConst {
 	int SEARCH_ORDER_USERID = 7;
 	int SEARCH_ORDER_WORKERID = 8;
 	int SEARCH_ORDER_LAUNDRYID = 9;
+	int SEARCH_ORDER_USERID_STATE = 10;
+	int SEARCH_ORDER_WORKERID_STATE = 11;
 
 	int STAT_NULL = 0;
 	int STAT_AREA = 1;

@@ -27,6 +27,13 @@ public class WorkerAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
+	public static Worker loginCellnum(Worker worker) {
+		HttpEntity entity = EntityBuilder.create().addObject(worker).build();
+		HttpUriRequest httpUriRequest = getFreePostBuilder()
+				.setUri(URI_PREFIX + "/logincellnum.html").setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Worker.class);
+	}
+
 	public static Result chkCellnum(String cellnum) {
 		Result result = Validator.ValidCellnum(cellnum);
 		if (result.getCode() != Result.OK) {

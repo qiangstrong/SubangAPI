@@ -2,6 +2,8 @@ package com.subang.domain;
 
 import java.io.Serializable;
 
+import com.subang.util.ComUtil;
+
 public class Price implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,8 +34,12 @@ public class Price implements Serializable {
 		return money;
 	}
 
+	public String getMoneyDes() {
+		return String.valueOf(Math.round(money));
+	}
+
 	public void setMoney(Double money) {
-		this.money = money;
+		this.money = ComUtil.round(money, 0);
 	}
 
 	public String getComment() {

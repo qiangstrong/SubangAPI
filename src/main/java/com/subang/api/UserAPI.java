@@ -41,6 +41,13 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
+	public static User loginCellnum(User user) {
+		HttpEntity entity = EntityBuilder.create().addObject(user).build();
+		HttpUriRequest httpUriRequest = getFreePostBuilder()
+				.setUri(URI_PREFIX + "/logincellnum.html").setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, User.class);
+	}
+
 	public static Map<String, String> add(User user) {
 		HttpEntity entity = EntityBuilder.create().addObject(user).build();
 		HttpUriRequest httpUriRequest = getFreePostBuilder().setUri(URI_PREFIX + "/add.html")
