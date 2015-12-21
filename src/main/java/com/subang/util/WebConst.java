@@ -7,6 +7,7 @@ public interface WebConst {
 	String HOST_NAME = "202.118.18.56";
 	String HOST_URI = "http://202.118.18.56/";
 	String LOG_TAG = "subang";
+	String ALIAS_TYPE = "subang_cellnum";
 
 	int USER = 0;
 	int WORKER = 1;

@@ -38,4 +38,10 @@ public class Result implements Serializable {
 		this.msg = msg;
 	}
 
+	public boolean isOk() {
+		if (code.equals(OK)) {
+			return true;
+		}
+		return false;
+	}
 }

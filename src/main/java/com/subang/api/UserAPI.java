@@ -57,8 +57,8 @@ public class UserAPI extends BaseAPI {
 	}
 
 	public static Result chkCellnum(String cellnum) {
-		Result result = Validator.ValidCellnum(cellnum);
-		if (result.getCode() != Result.OK) {
+		Result result = Validator.validCellnum(cellnum);
+		if (!result.isOk()) {
 			return result;
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
@@ -68,8 +68,8 @@ public class UserAPI extends BaseAPI {
 	}
 
 	public static Result chgCellnum(String cellnum) {
-		Result result = Validator.ValidCellnum(cellnum);
-		if (result.getCode() != Result.OK) {
+		Result result = Validator.validCellnum(cellnum);
+		if (!result.isOk()) {
 			return result;
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
@@ -79,8 +79,8 @@ public class UserAPI extends BaseAPI {
 	}
 
 	public static Result chgPassword(String password) {
-		Result result = Validator.ValidPassword(password);
-		if (result.getCode() != Result.OK) {
+		Result result = Validator.validPassword(password);
+		if (!result.isOk()) {
 			return result;
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("password", password).build();

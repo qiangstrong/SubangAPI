@@ -20,8 +20,8 @@ public class InfoAPI extends BaseAPI {
 	}
 
 	public static Result addFeedback(String comment) {
-		Result result = Validator.ValidMax(1000, comment);
-		if (result.getCode() != Result.OK) {
+		Result result = Validator.validMax(1000, comment);
+		if (!result.isOk()) {
 			return result;
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("comment", comment).build();

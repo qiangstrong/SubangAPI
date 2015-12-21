@@ -65,6 +65,10 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result fetch(Integer orderid, String barcode) {
+		Result result = Validator.validBarcode(barcode);
+		if (!result.isOk()) {
+			return result;
+		}
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
 				.addParameter("barcode", barcode).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/fetch.html")
@@ -74,8 +78,8 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result comment(Integer orderid, String comment) {
-		Result result = Validator.ValidMax(100, comment);
-		if (result.getCode() != Result.OK) {
+		Result result = Validator.validMax(100, comment);
+		if (!result.isOk()) {
 			return result;
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
@@ -102,8 +106,8 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result remark(Integer orderid, String remark) {
-		Result result = Validator.ValidMax(100, remark);
-		if (result.getCode() != Result.OK) {
+		Result result = Validator.validMax(100, remark);
+		if (!result.isOk()) {
 			return result;
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
