@@ -20,7 +20,7 @@ public class InfoAPI extends BaseAPI {
 	}
 
 	public static Result addFeedback(String comment) {
-		Result result = Validator.validMax(1000, comment);
+		Result result = Validator.validMaxlen(comment, 1000);
 		if (!result.isOk()) {
 			return result;
 		}

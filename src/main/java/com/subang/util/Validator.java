@@ -9,85 +9,86 @@ public class Validator extends BaseUtil {
 
 	public static final int CELLNUM_LENGTH = 11;
 	public static final int BARCODE_LENGTH = 13;
+	public static final int USERNO_LENGTH = 10;
 
 	// 11位数字
 	public static Result validCellnum(String cellnum) {
-		Result result = new Result();
-		if (cellnum == null) {
-			result.setCode(Result.ERR);
-			result.setMsg("手机号不能为空。");
-			return result;
-		}
-		cellnum = cellnum.trim();
-		if (cellnum.length() != CELLNUM_LENGTH) {
-			result.setCode(Result.ERR);
-			result.setMsg("手机号必须是11位的数字。");
-			return result;
-		}
-		char c;
-		for (int i = 0; i < CELLNUM_LENGTH; i++) {
-			c = cellnum.charAt(i);
-			if (c < '0' || c > '9') {
-				result.setCode(Result.ERR);
-				result.setMsg("手机号必须是11位的数字。");
-				return result;
-			}
-		}
-		result.setCode(Result.OK);
+		Result result = validNum(cellnum, CELLNUM_LENGTH);
+		result.setMsg("手机号" + result.getMsg());
+		return result;
+	}
+
+	public static Result validBarcode(String barcode) {
+		Result result = validNum(barcode, BARCODE_LENGTH);
+		result.setMsg("条形码" + result.getMsg());
+		return result;
+	}
+
+	public static Result validUserno(String userno) {
+		Result result = validNum(userno, USERNO_LENGTH);
+		result.setMsg("会员号" + result.getMsg());
 		return result;
 	}
 
 	public static Result validPassword(String password) {
-		Result result = new Result();
-		if (password == null) {
-			result.setCode(Result.ERR);
-			result.setMsg("密码不能为空。");
-			return result;
-		}
-		if (password.length() < 1 || password.length() > 50) {
-			result.setCode(Result.ERR);
-			result.setMsg("密码的长度需要在1-50之间。");
-			return result;
-		}
-		result.setCode(Result.OK);
+		Result result = validLen(password, 1, 50);
+		result.setMsg("密码" + result.getMsg());
 		return result;
 	}
 
-	public static Result validMax(int length, String string) {
+	public static Result validMaxlen(String string, int maxlen) {
 		Result result = new Result();
 		if (string == null) {
 			result.setCode(Result.ERR);
 			result.setMsg("不能为空。");
 			return result;
 		}
-		if (string.length() > length) {
+		string = string.trim();
+		if (string.length() > maxlen) {
 			result.setCode(Result.ERR);
-			result.setMsg("长度不能超过" + length + "个字符。");
+			result.setMsg("长度不能超过" + maxlen + "个字符。");
 			return result;
 		}
 		result.setCode(Result.OK);
 		return result;
 	}
 
-	public static Result validBarcode(String barcode) {
+	public static Result validLen(String string, int minlen, int maxlen) {
 		Result result = new Result();
-		if (barcode == null) {
+		if (string == null) {
 			result.setCode(Result.ERR);
-			result.setMsg("条形码不能为空。");
+			result.setMsg("不能为空。");
 			return result;
 		}
-		barcode = barcode.trim();
-		if (barcode.length() != CELLNUM_LENGTH) {
+		string = string.trim();
+		if (string.length() < minlen || string.length() > maxlen) {
 			result.setCode(Result.ERR);
-			result.setMsg("条形码必须是13位的数字。");
+			result.setMsg("长度需要在" + minlen + "-" + maxlen + "之间。");
+			return result;
+		}
+		result.setCode(Result.OK);
+		return result;
+	}
+
+	public static Result validNum(String string, int len) {
+		Result result = new Result();
+		if (string == null) {
+			result.setCode(Result.ERR);
+			result.setMsg("不能为空。");
+			return result;
+		}
+		string = string.trim();
+		if (string.length() != len) {
+			result.setCode(Result.ERR);
+			result.setMsg("长度必须是" + len + "位的数字。");
 			return result;
 		}
 		char c;
-		for (int i = 0; i < CELLNUM_LENGTH; i++) {
-			c = barcode.charAt(i);
+		for (int i = 0; i < len; i++) {
+			c = string.charAt(i);
 			if (c < '0' || c > '9') {
 				result.setCode(Result.ERR);
-				result.setMsg("条形码必须是13位的数字。");
+				result.setMsg("长度必须是" + len + "位的数字。");
 				return result;
 			}
 		}

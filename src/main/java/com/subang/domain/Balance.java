@@ -74,6 +74,17 @@ public class Balance implements Serializable {
 		return money;
 	}
 
+	public String getMoneyDes() {
+		if (money == null) {
+			return null;
+		}
+		if (money < 0) {
+			return money.toString();
+		} else {
+			return "+" + money.toString();
+		}
+	}
+
 	public void setMoney(Double money) {
 		this.money = ComUtil.round(money);
 	}

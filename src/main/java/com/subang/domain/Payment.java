@@ -9,7 +9,7 @@ public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public enum PayType {
-		balance, weixin, alipay, cash;
+		balance, weixin, alipay, cash, expense;
 		public static PayType toPayType(String arg) {
 			return PayType.values()[new Integer(arg)];
 		}
@@ -31,6 +31,9 @@ public class Payment implements Serializable {
 				break;
 			case cash:
 				description = "现金";
+				break;
+			case expense:
+				description = "支出";
 				break;
 			}
 			return description;

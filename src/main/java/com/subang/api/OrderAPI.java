@@ -78,7 +78,7 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result comment(Integer orderid, String comment) {
-		Result result = Validator.validMax(100, comment);
+		Result result = Validator.validMaxlen(comment, 100);
 		if (!result.isOk()) {
 			return result;
 		}
@@ -106,7 +106,7 @@ public class OrderAPI extends BaseAPI {
 	}
 
 	public static Result remark(Integer orderid, String remark) {
-		Result result = Validator.validMax(100, remark);
+		Result result = Validator.validMaxlen(remark, 100);
 		if (!result.isOk()) {
 			return result;
 		}
