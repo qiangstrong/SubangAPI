@@ -10,24 +10,26 @@ public class ClothesType implements Serializable {
 
 	private Integer id;
 	private String name;
+	private Double money; // 单位元
 	private String icon;
 	private Integer categoryid;
 	private Integer priceid;
 
-	private Double money;
+	private String pricename;
 
 	public ClothesType() {
 	}
 
-	public ClothesType(Integer id, String name, String icon, Integer categoryid, Integer priceid,
-			Double money) {
+	public ClothesType(Integer id, String name, Double money, String icon, Integer categoryid,
+			Integer priceid, String pricename) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.money = money;
 		this.icon = icon;
 		this.categoryid = categoryid;
 		this.priceid = priceid;
-		this.setMoney(money);
+		this.pricename = pricename;
 	}
 
 	public Integer getId() {
@@ -44,6 +46,18 @@ public class ClothesType implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Double getMoney() {
+		return money;
+	}
+
+	public String getMoneyDes() {
+		return ComUtil.getDes(money);
+	}
+
+	public void setMoney(Double money) {
+		this.money = ComUtil.round(money);
 	}
 
 	public String getIcon() {
@@ -70,16 +84,11 @@ public class ClothesType implements Serializable {
 		this.priceid = priceid;
 	}
 
-	public Double getMoney() {
-		return money;
+	public String getPricename() {
+		return pricename;
 	}
 
-	public String getMoneyDes() {
-		return ComUtil.getDes(money);
+	public void setPricename(String pricename) {
+		this.pricename = pricename;
 	}
-
-	public void setMoney(Double money) {
-		this.money = money;
-	}
-
 }

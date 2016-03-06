@@ -86,9 +86,9 @@ public class OrderDetail extends Order {
 			return "未确定";
 		}
 		String description = "";
-		description += "订单￥" + getMoneyDes() + "+";
-		description += "运费￥" + getFreightDes() + "-";
-		description += "优惠券￥" + getMoneyTicket();
+		description += "订单￥" + getMoneyDes();
+		// description += "+" + "运费￥" + getFreightDes();
+		description += "-" + "优惠券￥" + getMoneyTicket();
 		return description;
 	}
 

@@ -8,6 +8,32 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public enum Client {
+		weixin, user, worker, back;
+
+		public static String toClientDes(Client client) {
+			if (client == null) {
+				return "未知";
+			}
+			String description = null;
+			switch (client) {
+			case weixin:
+				description = "微信";
+				break;
+			case user:
+				description = "app";
+				break;
+			case worker:
+				description = "app";
+				break;
+			case back:
+				description = "后台";
+				break;
+			}
+			return description;
+		}
+	}
+
 	private Integer id;
 	private Boolean login;
 	private String openid;
@@ -17,6 +43,7 @@ public class User implements Serializable {
 	private String cellnum;
 	private Integer score;
 	private Double money;
+	private Integer client;
 	private Integer addrid; // 用户的默认地址
 
 	public User() {
@@ -26,7 +53,8 @@ public class User implements Serializable {
 	}
 
 	public User(Integer id, Boolean login, String openid, String userno, String nickname,
-			String password, String cellnum, Integer score, Double money, Integer addrid) {
+			String password, String cellnum, Integer score, Double money, Integer client,
+			Integer addrid) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -37,6 +65,7 @@ public class User implements Serializable {
 		this.cellnum = cellnum;
 		this.score = score;
 		this.money = money;
+		this.client = client;
 		this.addrid = addrid;
 	}
 
@@ -116,6 +145,29 @@ public class User implements Serializable {
 		this.money = ComUtil.round(money);
 	}
 
+	public Integer getClient() {
+		return client;
+	}
+
+	public Client getClientEnum() {
+		if (client == null) {
+			return null;
+		}
+		return Client.values()[client];
+	}
+
+	public String getClientDes() {
+		return Client.toClientDes(getClientEnum());
+	}
+
+	public void setClient(Integer client) {
+		this.client = client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client.ordinal();
+	}
+
 	public Integer getAddrid() {
 		return addrid;
 	}
@@ -123,5 +175,4 @@ public class User implements Serializable {
 	public void setAddrid(Integer addrid) {
 		this.addrid = addrid;
 	}
-
 }

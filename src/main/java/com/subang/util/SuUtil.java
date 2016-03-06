@@ -50,13 +50,25 @@ public class SuUtil extends BaseUtil {
 		return url1 + url3;
 	}
 
+	// desPath 绝对路径
+	public static boolean fileExist(String path) {
+		File file = new File(path);
+		if (file.exists()) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void deleteFile(String path) {
+		if (path != null) {
+			File file = new File(path);
+			file.delete();
+		}
+	}
+
 	// 用户绑定手机号时，产生验证码
 	public static String getAuthcode() {
-		StringBuffer authcode = new StringBuffer();
-		for (int i = 0; i < WebConst.AUTHCODE_LENGTH; i++) {
-			authcode.append(ComUtil.random.nextInt(10));
-		}
-		return authcode.toString();
+		return ComUtil.getRandomStr(WebConst.AUTHCODE_LENGTH);
 	}
 
 }

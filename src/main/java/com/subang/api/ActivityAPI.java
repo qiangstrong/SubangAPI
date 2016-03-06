@@ -26,8 +26,10 @@ public class ActivityAPI extends BaseAPI {
 		if (ticketTypes != null && (filter == null || filter.getIcon() != null)) {
 			for (TicketType ticketType : ticketTypes) {
 				if (ticketType.getIcon() != null) {
-					SuUtil.saveUrl(WebConst.HOST_URI + ticketType.getIcon(),
-							BASE_PATH + ticketType.getIcon());
+					if (!SuUtil.fileExist(BASE_PATH + ticketType.getIcon())) {
+						SuUtil.saveUrl(WebConst.HOST_URI + ticketType.getIcon(), BASE_PATH
+								+ ticketType.getIcon());
+					}
 				}
 			}
 		}
@@ -41,8 +43,10 @@ public class ActivityAPI extends BaseAPI {
 				.setEntity(entity).build();
 		TicketType ticketType = LocalHttpClient.executeJsonResult(httpUriRequest, TicketType.class);
 		if (ticketType != null && ticketType.getIcon() != null) {
-			SuUtil.saveUrl(WebConst.HOST_URI + ticketType.getIcon(),
-					BASE_PATH + ticketType.getIcon());
+			if (!SuUtil.fileExist(BASE_PATH + ticketType.getIcon())) {
+				SuUtil.saveUrl(WebConst.HOST_URI + ticketType.getIcon(),
+						BASE_PATH + ticketType.getIcon());
+			}
 		}
 
 		return ticketType;
@@ -56,8 +60,10 @@ public class ActivityAPI extends BaseAPI {
 		if (banners != null && (filter == null || filter.getIcon() != null)) {
 			for (Banner banner : banners) {
 				if (banner.getIcon() != null) {
-					SuUtil.saveUrl(WebConst.HOST_URI + banner.getIcon(),
-							BASE_PATH + banner.getIcon());
+					if (!SuUtil.fileExist(BASE_PATH + banner.getIcon())) {
+						SuUtil.saveUrl(WebConst.HOST_URI + banner.getIcon(),
+								BASE_PATH + banner.getIcon());
+					}
 				}
 			}
 		}

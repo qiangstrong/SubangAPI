@@ -16,7 +16,7 @@ public class APITest {
 		User user = new User();
 		user.setCellnum("15502457990");
 		user.setPassword("123");
-		Result result = UserAPI.login(user);
+		Result result = UserAPI.login(user.getCellnum());
 		pause();
 	}
 

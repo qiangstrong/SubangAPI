@@ -11,11 +11,11 @@ public class BaseAPI {
 
 	protected static AppArg appArg;
 
-	protected static void conf(Integer type, String cellnum, String password, String basePath) {
+	protected static void conf(Integer type, String cellnum, String basePath) {
 		appArg = new AppArg();
 		appArg.setType(type);
 		appArg.setCellnum(cellnum);
-		appArg.setPassword(password);
+		appArg.setPassword(null);
 		BASE_PATH = basePath;
 	}
 
@@ -26,11 +26,15 @@ public class BaseAPI {
 
 	protected static PostBuilder getPostBuilder() {
 		appArg.generate();
+		// PostBuilder builder = PostBuilder.create()
+		// .addParameter("type_auth", appArg.getType().toString())
+		// .addParameter("cellnum_auth", appArg.getCellnum())
+		// .addParameter("timestamp_auth", appArg.getTimestamp())
+		// .addParameter("signature_auth", appArg.getSignature());
+
 		PostBuilder builder = PostBuilder.create()
 				.addParameter("type_auth", appArg.getType().toString())
-				.addParameter("cellnum_auth", appArg.getCellnum())
-				.addParameter("timestamp_auth", appArg.getTimestamp())
-				.addParameter("signature_auth", appArg.getSignature());
+				.addParameter("cellnum_auth", appArg.getCellnum());
 		return builder;
 	}
 

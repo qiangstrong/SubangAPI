@@ -2,22 +2,20 @@ package com.subang.domain;
 
 import java.io.Serializable;
 
-import com.subang.util.ComUtil;
-
 public class Price implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private Double money;
+	private String name;
 	private String comment;
 	private Integer categoryid;
 
 	public Price() {
 	}
 
-	public Price(Integer id, Double money, String comment, Integer categoryid) {
+	public Price(Integer id, String name, String comment, Integer categoryid) {
 		this.id = id;
-		this.money = money;
+		this.name = name;
 		this.comment = comment;
 		this.categoryid = categoryid;
 	}
@@ -30,16 +28,12 @@ public class Price implements Serializable {
 		this.id = id;
 	}
 
-	public Double getMoney() {
-		return money;
+	public String getName() {
+		return name;
 	}
 
-	public String getMoneyDes() {
-		return String.valueOf(Math.round(money));
-	}
-
-	public void setMoney(Double money) {
-		this.money = ComUtil.round(money, 0);
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getComment() {
@@ -57,5 +51,4 @@ public class Price implements Serializable {
 	public void setCategoryid(Integer categoryid) {
 		this.categoryid = categoryid;
 	}
-
 }

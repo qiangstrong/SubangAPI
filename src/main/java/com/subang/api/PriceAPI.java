@@ -26,8 +26,10 @@ public class PriceAPI extends BaseAPI {
 		if (categorys != null && (filter == null || filter.getIcon() != null)) {
 			for (Category category : categorys) {
 				if (category.getIcon() != null) {
-					SuUtil.saveUrl(WebConst.HOST_URI + category.getIcon(),
-							BASE_PATH + category.getIcon());
+					if (!SuUtil.fileExist(BASE_PATH + category.getIcon())) {
+						SuUtil.saveUrl(WebConst.HOST_URI + category.getIcon(),
+								BASE_PATH + category.getIcon());
+					}
 				}
 			}
 		}
@@ -42,7 +44,10 @@ public class PriceAPI extends BaseAPI {
 				.setEntity(entity).build();
 		Category category = LocalHttpClient.executeJsonResult(httpUriRequest, Category.class);
 		if (category != null && category.getIcon() != null) {
-			SuUtil.saveUrl(WebConst.HOST_URI + category.getIcon(), BASE_PATH + category.getIcon());
+			if (!SuUtil.fileExist(BASE_PATH + category.getIcon())) {
+				SuUtil.saveUrl(WebConst.HOST_URI + category.getIcon(),
+						BASE_PATH + category.getIcon());
+			}
 		}
 		return category;
 	}

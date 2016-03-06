@@ -6,6 +6,8 @@ public interface WebConst {
 	// String HOST_URI = "http://www.subang123.com/";
 	String HOST_NAME = "202.118.18.56";
 	String HOST_URI = "http://202.118.18.56/";
+	// String HOST_NAME = "58.154.233.50";
+	// String HOST_URI = "http://58.154.233.50/";
 	String LOG_TAG = "subang";
 	String ALIAS_TYPE = "subang_cellnum";
 
@@ -35,8 +37,9 @@ public interface WebConst {
 	int SEARCH_ORDER_USERID = 7;
 	int SEARCH_ORDER_WORKERID = 8;
 	int SEARCH_ORDER_LAUNDRYID = 9;
-	int SEARCH_ORDER_USERID_STATE = 10;
-	int SEARCH_ORDER_WORKERID_STATE = 11;
+	int SEARCH_ORDER_BARCODE = 10;
+	int SEARCH_ORDER_USERID_STATE = 11;
+	int SEARCH_ORDER_WORKERID_STATE = 12;
 
 	int STAT_NULL = 0;
 	int STAT_AREA = 1;

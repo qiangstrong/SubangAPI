@@ -3,15 +3,12 @@ package com.subang.bean;
 import java.io.Serializable;
 
 import com.subang.domain.Payment.PayType;
+import com.subang.domain.User.Client;
 import com.subang.util.ComUtil;
 
 public class PayArg implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	public enum Client {
-		weixin, user, worker, back
-	}
 
 	private Integer client; // 微信端，不传此参数；app端传此参数
 	private Integer payType;

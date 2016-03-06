@@ -34,26 +34,31 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, User.class);
 	}
 
-	public static Result login(User user) {
-		HttpEntity entity = EntityBuilder.create().addObject(user).build();
-		HttpUriRequest httpUriRequest = getFreePostBuilder().setUri(URI_PREFIX + "/login.html")
+	public static Result getAuthcode(String cellnum, String authcode) {
+		Result result = Validator.validCellnum(cellnum);
+		if (!result.isOk()) {
+			return result;
+		}
+		result = Validator.validNum(authcode, WebConst.AUTHCODE_LENGTH);
+		if (!result.isOk()) {
+			return result;
+		}
+		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum)
+				.addParameter("authcode", authcode).build();
+		HttpUriRequest httpUriRequest = getFreePostBuilder().setUri(URI_PREFIX + "/authcode.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
-	public static User loginCellnum(User user) {
-		HttpEntity entity = EntityBuilder.create().addObject(user).build();
-		HttpUriRequest httpUriRequest = getFreePostBuilder()
-				.setUri(URI_PREFIX + "/logincellnum.html").setEntity(entity).build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest, User.class);
-	}
-
-	public static Map<String, String> add(User user) {
-		HttpEntity entity = EntityBuilder.create().addObject(user).build();
-		HttpUriRequest httpUriRequest = getFreePostBuilder().setUri(URI_PREFIX + "/add.html")
+	public static Result login(String cellnum) {
+		Result result = Validator.validCellnum(cellnum);
+		if (!result.isOk()) {
+			return result;
+		}
+		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
+		HttpUriRequest httpUriRequest = getFreePostBuilder().setUri(URI_PREFIX + "/login.html")
 				.setEntity(entity).build();
-		List<Result> results = LocalHttpClient.executeJsonList(httpUriRequest, Result.class);
-		return ComUtil.listToMap(results);
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
 	public static Result chkCellnum(String cellnum) {
@@ -74,17 +79,6 @@ public class UserAPI extends BaseAPI {
 		}
 		HttpEntity entity = EntityBuilder.create().addParameter("cellnum", cellnum).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/chgcellnum.html")
-				.setEntity(entity).build();
-		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
-	}
-
-	public static Result chgPassword(String password) {
-		Result result = Validator.validPassword(password);
-		if (!result.isOk()) {
-			return result;
-		}
-		HttpEntity entity = EntityBuilder.create().addParameter("password", password).build();
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/chgpassword.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
