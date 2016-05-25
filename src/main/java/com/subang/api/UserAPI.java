@@ -97,9 +97,8 @@ public class UserAPI extends BaseAPI {
 	}
 
 	public static AddrData getAddrData() {
-		HttpEntity entity = EntityBuilder.create().build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/getaddrdata.html")
-				.setEntity(entity).build();
+				.build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, AddrData.class);
 	}
 
@@ -149,12 +148,41 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
+	public static List<User> listUser(User filter) {
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/user.html")
+				.setEntity(entity).build();
+		List<User> users = LocalHttpClient.executeJsonList(httpUriRequest, User.class);
+		return users;
+	}
+
 	public static List<Balance> listBalance(Balance filter) {
 		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/balance.html")
 				.setEntity(entity).build();
 		List<Balance> balances = LocalHttpClient.executeJsonList(httpUriRequest, Balance.class);
 		return balances;
+	}
+
+	public static List<Balance> listSalary(Balance filter) {
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/salary.html")
+				.setEntity(entity).build();
+		List<Balance> balances = LocalHttpClient.executeJsonList(httpUriRequest, Balance.class);
+		return balances;
+	}
+
+	public static Result draw() {
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/draw.html").build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
+	}
+
+	public static Result share(Integer orderid) {
+		HttpEntity entity = EntityBuilder.create().addParameter("orderid", orderid.toString())
+				.build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/share.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}
 
 	public static BasePrepayResult prepay(PayArg payArg) {

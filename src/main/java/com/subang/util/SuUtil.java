@@ -71,4 +71,11 @@ public class SuUtil extends BaseUtil {
 		return ComUtil.getRandomStr(WebConst.AUTHCODE_LENGTH);
 	}
 
+	public static String getPromPath(String cellnum) {
+		return WebConst.HOST_URI + "weixin/user/promote.html?cellnum=" + cellnum;
+	}
+
+	public static String getSharePath() {
+		return WebConst.HOST_URI + "content/weixin/activity/share.htm";
+	}
 }

@@ -147,6 +147,21 @@ public class ComUtil extends BaseUtil {
 		return filename.substring(index);
 	}
 
+	public static String hideCellnum(String cellnum) {
+		StringBuffer cellnumBuffer = new StringBuffer();
+		int i = 0;
+		for (; i < 3; i++) {
+			cellnumBuffer.append(cellnum.charAt(i));
+		}
+		for (; i < 7; i++) {
+			cellnumBuffer.append('*');
+		}
+		for (; i < Validator.CELLNUM_LENGTH; i++) {
+			cellnumBuffer.append(cellnum.charAt(i));
+		}
+		return cellnumBuffer.toString();
+	}
+
 	public static void main(String[] args) {
 
 	}

@@ -13,8 +13,10 @@ public class InfoAPI extends BaseAPI {
 
 	private static final String URI_PREFIX = BASE_URI + "/info";
 
-	public static Info get() {
-		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/get.html").build();
+	public static Info get(Info filter) {
+		HttpEntity entity = EntityBuilder.create().addFilter(filter).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/get.html")
+				.setEntity(entity).build();
 		Info info = LocalHttpClient.executeJsonResult(httpUriRequest, Info.class);
 		return info;
 	}

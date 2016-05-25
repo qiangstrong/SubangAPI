@@ -9,7 +9,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public enum Client {
-		weixin, user, worker, back;
+		weixin, user, worker, back, promotion;
 
 		public static String toClientDes(Client client) {
 			if (client == null) {
@@ -29,6 +29,9 @@ public class User implements Serializable {
 			case back:
 				description = "后台";
 				break;
+			case promotion:
+				description = "推广";
+				break;
 			}
 			return description;
 		}
@@ -43,18 +46,18 @@ public class User implements Serializable {
 	private String cellnum;
 	private Integer score;
 	private Double money;
+	private Double salary;
 	private Integer client;
 	private Integer addrid; // 用户的默认地址
+	private Integer userid;
 
 	public User() {
 		this.login = false;
-		this.score = 0;
-		this.money = 0.0;
 	}
 
 	public User(Integer id, Boolean login, String openid, String userno, String nickname,
-			String password, String cellnum, Integer score, Double money, Integer client,
-			Integer addrid) {
+			String password, String cellnum, Integer score, Double money, Double salary,
+			Integer client, Integer addrid, Integer userid) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -65,8 +68,10 @@ public class User implements Serializable {
 		this.cellnum = cellnum;
 		this.score = score;
 		this.money = money;
+		this.salary = salary;
 		this.client = client;
 		this.addrid = addrid;
+		this.userid = userid;
 	}
 
 	public Integer getId() {
@@ -125,6 +130,13 @@ public class User implements Serializable {
 		return cellnum;
 	}
 
+	public String getHiddenCellnum() {
+		if (cellnum == null) {
+			return null;
+		}
+		return ComUtil.hideCellnum(cellnum);
+	}
+
 	public void setCellnum(String cellnum) {
 		this.cellnum = cellnum;
 	}
@@ -143,6 +155,14 @@ public class User implements Serializable {
 
 	public void setMoney(Double money) {
 		this.money = ComUtil.round(money);
+	}
+
+	public Double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = ComUtil.round(salary);
 	}
 
 	public Integer getClient() {
@@ -174,5 +194,13 @@ public class User implements Serializable {
 
 	public void setAddrid(Integer addrid) {
 		this.addrid = addrid;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 }
