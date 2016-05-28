@@ -1,7 +1,6 @@
 package com.subang.api;
 
 import java.util.List;
-import java.util.Map;
 
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
@@ -18,7 +17,6 @@ import com.subang.domain.Addr;
 import com.subang.domain.Balance;
 import com.subang.domain.Location;
 import com.subang.domain.User;
-import com.subang.util.ComUtil;
 import com.subang.util.SuUtil;
 import com.subang.util.Validator;
 import com.subang.util.WebConst;
@@ -102,12 +100,12 @@ public class UserAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, AddrData.class);
 	}
 
-	public static Map<String, String> addAddr(Addr addr) {
+	public static AddrDetail addAddr(Addr addr) {
 		HttpEntity entity = EntityBuilder.create().addObject(addr).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/addaddr.html")
 				.setEntity(entity).build();
-		List<Result> results = LocalHttpClient.executeJsonList(httpUriRequest, Result.class);
-		return ComUtil.listToMap(results);
+		AddrDetail addrDetail = LocalHttpClient.executeJsonResult(httpUriRequest, AddrDetail.class);
+		return addrDetail;
 	}
 
 	public static Result deleteAddr(Integer addrid) {
@@ -144,6 +142,13 @@ public class UserAPI extends BaseAPI {
 		HttpEntity entity = EntityBuilder.create()
 				.addParameter("tickettypeid", ticketTypeid.toString()).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/addticket.html")
+				.setEntity(entity).build();
+		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
+	}
+
+	public static Result exgTicket(String codeno) {
+		HttpEntity entity = EntityBuilder.create().addParameter("codeno", codeno).build();
+		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/exgticket.html")
 				.setEntity(entity).build();
 		return LocalHttpClient.executeJsonResult(httpUriRequest, Result.class);
 	}

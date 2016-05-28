@@ -1,7 +1,6 @@
 package com.subang.api;
 
 import java.util.List;
-import java.util.Map;
 
 import ytx.org.apache.http.HttpEntity;
 import ytx.org.apache.http.client.methods.HttpUriRequest;
@@ -15,7 +14,6 @@ import com.subang.bean.WeixinPrepayResult;
 import com.subang.domain.Clothes;
 import com.subang.domain.History;
 import com.subang.domain.Order;
-import com.subang.util.ComUtil;
 import com.subang.util.Validator;
 import com.support.client.EntityBuilder;
 import com.support.client.LocalHttpClient;
@@ -48,12 +46,12 @@ public class OrderAPI extends BaseAPI {
 		return LocalHttpClient.executeJsonResult(httpUriRequest, OrderDetail.class);
 	}
 
-	public static Map<String, String> add(Order order) {
+	public static Order add(Order order) {
 		HttpEntity entity = EntityBuilder.create().addObject(order).build();
 		HttpUriRequest httpUriRequest = getPostBuilder().setUri(URI_PREFIX + "/add.html")
 				.setEntity(entity).build();
-		List<Result> results = LocalHttpClient.executeJsonList(httpUriRequest, Result.class);
-		return ComUtil.listToMap(results);
+		order = LocalHttpClient.executeJsonResult(httpUriRequest, Order.class);
+		return order;
 	}
 
 	public static Result price(Integer orderid, Double money) {
