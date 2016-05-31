@@ -124,6 +124,10 @@ public class OrderDetail extends Order {
 		this.payType = payType;
 	}
 
+	public void setPayType(PayType payType) {
+		this.payType = payType.ordinal();
+	}
+
 	public Double getMoneyTicket() {
 		return moneyTicket;
 	}

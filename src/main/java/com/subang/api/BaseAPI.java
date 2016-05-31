@@ -38,4 +38,8 @@ public class BaseAPI {
 		return builder;
 	}
 
+	protected static String getAuthStr() {
+		return "type_auth=" + appArg.getType().toString() + "&cellnum_auth=" + appArg.getCellnum();
+	}
+
 }

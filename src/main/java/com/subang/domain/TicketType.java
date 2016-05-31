@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import com.subang.util.ComUtil;
+
 public class TicketType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -11,10 +13,11 @@ public class TicketType implements Serializable {
 	protected Integer id;
 	protected String name;
 	protected String icon;
+	protected String poster;
 	protected Double money;
 	protected Integer score;
 	protected Timestamp deadline;
-	private String comment;
+	protected String comment;
 	protected Integer categoryid;
 
 	protected String categoryname;
@@ -22,11 +25,13 @@ public class TicketType implements Serializable {
 	public TicketType() {
 	}
 
-	public TicketType(Integer id, String name, String icon, Double money, Integer score,
-			Timestamp deadline, String comment, Integer categoryid, String categoryname) {
+	public TicketType(Integer id, String name, String icon, String poster, Double money,
+			Integer score, Timestamp deadline, String comment, Integer categoryid,
+			String categoryname) {
 		this.id = id;
 		this.name = name;
 		this.icon = icon;
+		this.poster = poster;
 		this.money = money;
 		this.score = score;
 		this.deadline = deadline;
@@ -58,12 +63,20 @@ public class TicketType implements Serializable {
 		this.icon = icon;
 	}
 
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
 	public Double getMoney() {
 		return money;
 	}
 
 	public void setMoney(Double money) {
-		this.money = money;
+		this.money = ComUtil.round(money);
 	}
 
 	public Integer getScore() {

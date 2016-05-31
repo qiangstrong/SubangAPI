@@ -17,4 +17,8 @@ public class SubangAPI {
 		BaseAPI.BASE_PATH = null;
 		BaseAPI.appArg = null;
 	}
+
+	public static String getAuthStr() {
+		return BaseAPI.getAuthStr();
+	}
 }
